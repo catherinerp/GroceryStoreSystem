@@ -3,6 +3,16 @@ body {
   font-family: sans-serif;
 }
 
+.banner {
+  overflow: hidden;
+  background-color: #2196F3;
+}
+
+.img-logo {
+  border-radius: 50%;
+  size: 5%;
+}
+
 .shopping-cart {
   width: 130px;
   position: fixed;
@@ -42,7 +52,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #7393B3;
+  background-color: #2196F3;
   color: white;
 }
 
