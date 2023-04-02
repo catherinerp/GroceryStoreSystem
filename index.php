@@ -8,6 +8,7 @@ This page contains the views for different sections of the main webpage.
 <head>
   <title>GroceryShopping</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <?php include_once 'components/header.php' ?>
