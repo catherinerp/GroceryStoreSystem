@@ -1,12 +1,13 @@
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .banner {
   overflow: hidden;
   background-color: #2196F3;
   margin: auto;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .img-logo {
@@ -19,6 +20,8 @@ body {
 .banner h3 {
   display: inline-block;
   color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
 }
 
 .shopping-cart button {
@@ -27,6 +30,8 @@ body {
   padding: 6px 10px;
   margin-top: 8px;
   margin-right: 16px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
   font-size: 30px;
   border: none;
   cursor: pointer;
@@ -43,6 +48,7 @@ body {
 .topnav {
   overflow: hidden;
   background-color: #333;
+  font-weight: 500;
 }
 
 .topnav a {
