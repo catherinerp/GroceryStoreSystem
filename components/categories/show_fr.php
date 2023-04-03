@@ -6,7 +6,7 @@ This page contains sql request for freezer category.
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="assets/css/landing.css">
+		<link rel="stylesheet" href="landing.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@ This page contains sql request for freezer category.
                     //$link = mysqli_connect("aa4xf37s2fw51e.cs0uliqvpua0.us-east-1.rds.amazonaws.com","uts","internet","uts");
             if (!$conn)
                 die("Could not connect to Server");
-                
+
             $query_string = "SELECT * FROM `products` WHERE product_id REGEXP '^4';";
 
             $result = mysqli_query($conn, $query_string);

@@ -17,6 +17,6 @@ This page contains the views for different sections of the main webpage.
 </head>
 <body>
     <?php include_once 'components/header.php' ?>
-    <iframe name="view" src="landingpage.php" frameborder=0 width="100%" height="100%"></iframe>
+    <iframe name="view" src="components/categories/show_products.php" frameborder=0 width="100%" height="100%"></iframe>
 </body>
 </html>

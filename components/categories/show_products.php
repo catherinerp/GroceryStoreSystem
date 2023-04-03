@@ -2,8 +2,27 @@
 Author: Catherine Pe Benito
 Created: 06/03/2023
 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="landing.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+	</head>
+	<body>
+<h3>Browse products</h3>
 <?php
-    include "components/dbConfig.php";
+    $hostname = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "assignment1";
+
+    $conn = mysqli_connect($hostname, $username,$password,$dbname);
+            //$link = mysqli_connect("aa4xf37s2fw51e.cs0uliqvpua0.us-east-1.rds.amazonaws.com","uts","internet","uts");
+    if (!$conn)
+        die("Could not connect to Server");
     
     $query_string = "SELECT * FROM products";
 
@@ -22,3 +41,5 @@ Created: 06/03/2023
 
     mysqli_close($conn);
 ?>
+</body>
+</html>	
