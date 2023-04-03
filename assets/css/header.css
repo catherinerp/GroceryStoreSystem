@@ -61,13 +61,55 @@ body {
   border-bottom: 5px solid transparent;
 }
 
-.topnav a:hover {
+.topnav a:hover, .dropdown:hover .drophvr {
   background-color: #ddd;
   color: black;
 }
 
 .topnav a.active {
   border-bottom: 5px solid #2196F3;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .drophvr {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-links {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-links a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-links a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-links {
+  display: block;
 }
 
 .search-bar { 
@@ -138,12 +180,8 @@ body {
   margin-left: 50px;
 
 @media screen and (max-width: 600px) {
-  .topnav .search-bar {
-    float: none;
-  }
-  .topnav .shopping-cart {
-    float: none;
-  }
+  .topnav .search-bar {float: none;}
+  .topnav .shopping-cart {float: none;}
   
   .topnav a, .topnav input[type=text], .topnav .search-bar button {
     float: none;
@@ -154,10 +192,7 @@ body {
     padding: 14px;
   }
 
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-
+  .topnav input[type=text] {border: 1px solid #ccc;}
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }

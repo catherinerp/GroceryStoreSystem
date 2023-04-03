@@ -25,7 +25,18 @@ Created: 06/03/2023
 		<div class="topnav">
             <a style="cursor:pointer" onclick="openNav()"><i class="fa fa-bars"></i> Browse</a>
             <a class="active" href="landingpage.php" target="view">Home</a>
-            <a href="categories.php" target="view">Categories </a>
+            <div class="dropdown">
+                <a class="drophvr" href="categories.php" target="view">Categories <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-links">
+                    <a href="components/categories/show_fv.php" target="view">Fruit & Vegetables</a>
+                    <a href="components/categories/show_ms.php" target="view">Meat & Seafood</a>
+                    <a href="#" target="view">Snacks & Confectionery</a>
+                    <a href="#" target="view">Freezer</a>
+                    <a href="#" target="view">Beauty & Personal Care</a>
+                    <a href="#" target="view">Pets</a>
+                    <a href="#" target="view">Household</a>
+                </div>
+            </div>
             <a href="register.php" target="view">Register</a>
             <div class="search-bar">
             <form action="/search.php">
@@ -39,13 +50,13 @@ Created: 06/03/2023
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <p>Browse by Category</p>
-            <a href="#" target="view">Fruit & Vegetables</a>
-            <a href="#">Meat & Seafood</a>
-            <a href="#">Snacks & Confectionery</a>
-            <a href="#">Freezer</a>
-            <a href="#">Beauty & Personal Care</a>
-            <a href="#">Pets</a>
-            <a href="#">Household</a>
+            <a href="components/categories/show_fv.php" target="view" onclick="closeNav()">Fruit & Vegetables</a>
+            <a href="components/categories/show_ms.php" target="view" onclick="closeNav()">Meat & Seafood</a>
+            <a href="#" target="view" onclick="closeNav()">Snacks & Confectionery</a>
+            <a href="#" target="view" onclick="closeNav()">Freezer</a>
+            <a href="#" target="view" onclick="closeNav()">Beauty & Personal Care</a>
+            <a href="#" target="view" onclick="closeNav()">Pets</a>
+            <a href="#" target="view" onclick="closeNav()">Household</a>
         </div>
         <script>
             function openNav() {

@@ -13,7 +13,7 @@ Created: 06/03/2023
     if (!$conn)
         die("Could not connect to Server");
     
-    $query_string = "select * from products";
+    $query_string = "SELECT * FROM products";
 
     $result = mysqli_query($conn, $query_string);
     $num_rows = mysqli_num_rows($result);

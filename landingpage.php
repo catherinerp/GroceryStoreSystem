@@ -14,7 +14,7 @@ This pages displays the main content of the home webpage.
 	</head>
 	<body>
 		<h3>Browse products</h3>
-		<?php include_once 'components/show_products.php' ?>
+		<?php include_once 'components/categories/show_products.php' ?>
 	</body>
 </html>	
 		

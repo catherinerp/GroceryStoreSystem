@@ -2,3 +2,12 @@ body {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
   }
+
+  h3 {
+    margin: 10 auto;
+  }
+
+  table {
+    width: 100%;
+    height: 100%;
+  }
