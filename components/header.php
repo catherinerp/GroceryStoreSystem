@@ -37,10 +37,10 @@ Created: 06/03/2023
                     <a href="components/categories/show_hh.php" target="view">Household</a>
                 </div>
             </div>
-            <a href="register.php" target="view">Register</a>
+            <a href="components/help.php" target="view">Help</a>
             <div class="search-bar">
-            <form action="/search.php">
-                <input type="text" placeholder="Search" name="search">
+            <form target="view" action="components/search.php" method="GET">
+                <input type="text" placeholder="Search" name="query">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
