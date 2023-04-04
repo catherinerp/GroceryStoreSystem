@@ -17,12 +17,15 @@ Created: 06/03/2023
 <?php
     include "../dbConfig.php";
     
-    $query_string = "SELECT * FROM products";
+    $query_string = "SELECT product_name, unit_price, unit_quantity FROM products";
 
     $result = mysqli_query($conn, $query_string);
     $num_rows = mysqli_num_rows($result);
     if ($num_rows > 0) {
         echo "<table border=0>";
+        echo "<td>Product Name</td>\n";
+        echo "<td>Price</td>\n";
+        echo "<td>Quantity</td>\n";
         while ($a_row = mysqli_fetch_row($result)) { //Get the rows from the table
             echo "<tr>\n";
             foreach ($a_row as $field) //get the columns in each row
