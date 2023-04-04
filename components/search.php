@@ -5,7 +5,7 @@ Created: 02/04/2023
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="assets/css/landing.css">
+		<link rel="stylesheet" href="categories/landing.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,15 +13,7 @@ Created: 02/04/2023
 	</head>
 <body>
 <?php
-    $hostname = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "assignment1";
-
-    $conn = mysqli_connect($hostname, $username,$password,$dbname);
-            //$link = mysqli_connect("aa4xf37s2fw51e.cs0uliqvpua0.us-east-1.rds.amazonaws.com","uts","internet","uts");
-    if (!$conn)
-        die("Could not connect to Server");
+    include "dbConfig.php";
 
 if(isset($_GET['query'])) {
     $query = mysqli_real_escape_string($conn, $_GET['query']);
