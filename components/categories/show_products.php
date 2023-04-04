@@ -13,6 +13,7 @@ Created: 06/03/2023
 	</head>
 	<body>
 <h3>Browse products</h3>
+<div class="main-content">
 <?php
     include "../dbConfig.php";
     
@@ -33,5 +34,6 @@ Created: 06/03/2023
 
     mysqli_close($conn);
 ?>
+</div>
 </body>
 </html>	

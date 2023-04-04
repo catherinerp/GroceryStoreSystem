@@ -12,6 +12,8 @@ Created: 02/04/2023
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 <body>
+
+<div class="main-content">
 <?php
     include "dbConfig.php";
 
@@ -50,5 +52,6 @@ if(isset($_GET['query'])) {
 }
 mysqli_close($conn);
 ?>
+</div>
 </body>
 </html>
