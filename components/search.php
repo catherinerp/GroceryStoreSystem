@@ -35,7 +35,12 @@ if(isset($_GET['query'])) {
                 while ($a_row = mysqli_fetch_row($result)) { //Get the rows from the table
                     echo "<tr>\n";
                     foreach ($a_row as $field) //get the columns in each row
-                        echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
+                        //echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
+                        if ($a_row=='unit_price') {
+                            echo "\t<td> $" . htmlspecialchars($field) . "</td>\n";
+                        } else {
+                            echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
+                        }
                     echo "</tr>";
                 }
                 echo "</table>";
