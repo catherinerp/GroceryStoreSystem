@@ -32,9 +32,11 @@ Created: 06/03/2023
             echo "<div class='product-card'>\n";
             foreach ($a_row as $key => $field) {
                 if ($key == 0) {
-                    echo "\t<h3>$field" . " (" . $a_row[2] . ")</h3>\n";
+                    echo "<h3>$field</h3>\n";
                 } elseif ($key == 1) {
-                    echo "\t<p class='card-price'>$" . $field . "</p>\n";
+                    echo "<p class='card-price'>$" . $field . " for ";
+                } else {
+                    echo $field . "</p>\n";
                 }
             }
             echo "\t<button>Add to Cart</button>\n";
