@@ -12,7 +12,7 @@ Created: 06/03/2023
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-<h1 style="text-align:center">Browse products</h1>
+<h1 style="text-align:center">Browse Products</h1>
 <div class="main-content">
 <?php
     include "../dbConfig.php";
@@ -26,25 +26,25 @@ Created: 06/03/2023
         $count = 0;
         echo "<div class='product-container'>\n";
         while ($a_row = mysqli_fetch_row($result)) {
-            if ($count % 4 == 0) { // start a new row every 4 products
+            if ($count % 4 == 0) {
                 echo "<div class='product-row'>\n";
             }
             echo "<div class='product-card'>\n";
             foreach ($a_row as $key => $field) {
-                if ($key == 0) { // check if the current column is 'product_name'
-                    echo "\t<h3>$field" . " (" . $a_row[2] . ")</h3>\n"; // print 'product_name' and 'stock_quantity' in parentheses
-                } elseif ($key == 1) { // check if the current column is 'unit_price'
-                    echo "\t<p class='card-price'>$" . $field . "</p>\n"; // print 'unit_price' with a '$' prefix
+                if ($key == 0) {
+                    echo "\t<h3>$field" . " (" . $a_row[2] . ")</h3>\n";
+                } elseif ($key == 1) {
+                    echo "\t<p class='card-price'>$" . $field . "</p>\n";
                 }
             }
             echo "\t<button>Add to Cart</button>\n";
             echo "</div>\n";
             $count++;
-            if ($count % 4 == 0) { // end the row after 4 products
+            if ($count % 4 == 0) {
                 echo "</div>\n";
             }
         }
-        if ($count % 4 != 0) { // close the last row if it's not complete
+        if ($count % 4 != 0) {
             echo "</div>\n";
         }
         echo "</div>\n";

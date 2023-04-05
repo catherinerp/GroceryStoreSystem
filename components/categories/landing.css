@@ -4,6 +4,7 @@ body {
   margin-bottom: 0px;
   min-height: 100vh;
   max-width: 100%;
+  background-color: white;
 }
 
 .product-container {
@@ -23,12 +24,12 @@ body {
 .product-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  width: 250px; /* set a fixed width of 25% of the parent element */
-  height: 200px; /* set a fixed height of 300px */
+  width: 250px;
+  height: 200px;
   text-align: center;
   font-family: 'Quicksand';
   margin: 10px;
-  box-sizing: border-box; /* include padding and border in the element's total width and height */
+  box-sizing: border-box;
   padding: 10px;
 }
 
@@ -55,10 +56,12 @@ body {
   opacity: 0.7;
 }
 
-
-
-
 /** Help Page CSS **/
+
+.help-container {
+  width: 50%;
+  margin: 0 auto;
+}
 
 .accordion {
   background-color: #eee;
