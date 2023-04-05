@@ -22,22 +22,28 @@ Created: 06/03/2023
     $result = mysqli_query($conn, $query_string);
     $num_rows = mysqli_num_rows($result);
     if ($num_rows > 0) {
+        echo "<div class='product-card'>\n";
         echo "<table border=0>";
         echo "<td>Product Name</td>\n";
         echo "<td>Price</td>\n";
         echo "<td>Quantity</td>\n";
         while ($a_row = mysqli_fetch_row($result)) { //Get the rows from the table
             echo "<tr>\n";
-            foreach ($a_row as $field) //get the columns in each row
-                // echo "\t<td>$field</td>\n";
-                if ($a_row=='unit_price') {
-                    echo "\t<td> $" . htmlspecialchars($field) . "</td>\n";
-                } else {
-                    echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
+            
+            foreach ($a_row as $key => $field) {
+                if ($key == 0) { // check if the current column is 'product_name'
+                    echo "\t<td>$field" . " (" . $a_row[2] . ")</td>\n"; // print 'product_name' and 'stock_quantity' in parentheses
+                } elseif ($key == 1) { // check if the current column is 'unit_price'
+                    echo "\t<td class='card-price'>$" . $field . "</td>\n"; // print 'unit_price' with a '$' prefix
+                } else { // for all other columns
+                    echo "\t<td>$field</td>\n"; // print as it is
                 }
+            }
+            echo "\t<td><button>Add to Cart</button></td>\n";
             echo "</tr>";
         }
         echo "</table>";
+        echo "</div>";
     }
 
     mysqli_close($conn);
