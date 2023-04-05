@@ -16,8 +16,38 @@ This page contains help information.
 		<h1>Help</h1>
         <h2>Frequently Asked Questions</h2>
         drop down commonly asked Questions
+		<button class="accordion">Section 1</button>
+		<div class="panel">
+		<p>answer</p>
+		</div>
 
-        <h2>Contact Us</h2>
-        
+		<button class="accordion">Section 1</button>
+		<div class="panel">
+		<p>answer</p>
+		</div>
+
+		<button class="accordion">Section 1</button>
+		<div class="panel">
+		<p>answer</p>
+		</div>
+
+        <h1>Contact Us</h1>
+
+        <script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+		acc[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var panel = this.nextElementSibling;
+			if (panel.style.display === "block") {
+			panel.style.display = "none";
+			} else {
+			panel.style.display = "block";
+			}
+		});
+		}
+</script>
 </body>
 </html>	
