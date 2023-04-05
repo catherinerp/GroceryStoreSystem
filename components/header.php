@@ -24,7 +24,7 @@ Created: 06/03/2023
         </div>
 		<div class="topnav">
             <a style="cursor:pointer" onclick="openNav()"><i class="fa fa-bars"></i> Browse</a>
-            <a class="active" href="components/categories/show_products.php" target="view">Home</a>
+            <a href="components/categories/show_products.php" target="view">Home</a>
             <div class="dropdown">
                 <a class="drophvr" href="categories.php" target="view">Categories <i class="fa fa-caret-down"></i></a>
                 <div class="dropdown-links">
