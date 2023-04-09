@@ -30,9 +30,6 @@ This page contains help information.
 		<div class="panel">
 		<p>answer</p>
 		</div>
-
-        <h2>Contact Us</h2>
-
 </div>		
         <script>
 		var acc = document.getElementsByClassName("accordion");
@@ -49,6 +46,7 @@ This page contains help information.
 			}
 		});
 		}
+</script>
 </script>
 </body>
 </html>	

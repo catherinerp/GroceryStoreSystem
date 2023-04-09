@@ -59,13 +59,13 @@ Created: 06/03/2023
             <a href="components/categories/show_hh.php" target="view" onclick="closeNav()">Household</a>
         </div>
         <script>
-            function openNav() {
+        function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
-            }
+        }
 
-            function closeNav() {
+        function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
-            }
+        }
         </script>
 	</body>
 </html>	
