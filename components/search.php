@@ -19,31 +19,45 @@ Created: 02/04/2023
 
 if(isset($_GET['query'])) {
     $query = mysqli_real_escape_string($conn, $_GET['query']);
-    // gets value sent over search form and escapes any special characters
     $min_length = 3;
-
     // you can set minimum length of the query if you want
-    if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
+    if(strlen($query) >= $min_length)   { // if query length is more or equal minimum length then
         $query_string = "SELECT * FROM `products`
         WHERE (`product_name` LIKE '%".$query."%')";
         $result = mysqli_query($conn, $query_string);
+
         if ($result) {
+            include "filterResults.php";
             $num_rows = mysqli_num_rows($result);
             if ($num_rows > 0) {
-                echo "<h3>Search results for '$query'</h3>";
-                echo "<table border=0>";
+                $count = 0;
+                echo "<h1 style='text-align:center'>Search results for '$query'</h1>";
+                echo "<div class='product-container'>\n";
                 while ($a_row = mysqli_fetch_row($result)) { //Get the rows from the table
-                    echo "<tr>\n";
-                    foreach ($a_row as $field) //get the columns in each row
-                        //echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
-                        if ($a_row=='unit_price') {
-                            echo "\t<td> $" . htmlspecialchars($field) . "</td>\n";
-                        } else {
-                            echo "\t<td>" . htmlspecialchars($field) . "</td>\n";
+                    if ($count % 4 == 0) {
+                        echo "<div class='product-row'>\n";
+                    }
+                    echo "<div class='product-card'>\n";
+                    foreach ($a_row as $key => $field) {
+                        if ($key == 1) {
+                            echo "<h3>$field</h3>\n";
+                        } elseif ($key == 2) {
+                            echo "<p class='card-price'>$" . $field . " for ";
+                        } elseif ($key == 3) {
+                            echo $field . "</p>\n";
                         }
-                    echo "</tr>";
+                    }
+                    echo "\t<button>Add to Cart</button>\n";
+                    echo "</div>\n";
+                    $count++;
+                    if ($count % 4 == 0) {
+                        echo "</div>\n";
+                    }
                 }
-                echo "</table>";
+                if ($count % 4 != 0) {
+                    echo "</div>\n";
+                }
+                echo "</div>\n";
             } else { // if there is no matching rows do following
                 echo "<h3>Sorry! It seems we couldn't find anything with '$query' :(</h3>";
             }
@@ -57,6 +71,7 @@ if(isset($_GET['query'])) {
 }
 mysqli_close($conn);
 ?>
+
 </div>
 </body>
 </html>

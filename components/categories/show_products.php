@@ -17,7 +17,7 @@ Created: 06/03/2023
 <?php
     include "../dbConfig.php";
 
-    $query_string = "SELECT product_name, unit_price, unit_quantity FROM products";
+    $query_string = "SELECT * FROM products";
 
     $result = mysqli_query($conn, $query_string);
     $num_rows = mysqli_num_rows($result);
@@ -31,11 +31,11 @@ Created: 06/03/2023
             }
             echo "<div class='product-card'>\n";
             foreach ($a_row as $key => $field) {
-                if ($key == 0) {
+                if ($key == 1) {
                     echo "<h3>$field</h3>\n";
-                } elseif ($key == 1) {
+                } elseif ($key == 2) {
                     echo "<p class='card-price'>$" . $field . " for ";
-                } else {
+                } elseif ($key == 3) {
                     echo $field . "</p>\n";
                 }
             }
