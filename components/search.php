@@ -10,12 +10,15 @@ Created: 02/04/2023
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
-	</head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
 <body>
 
 <div class="main-content">
-<?php
+<?php    
     include "dbConfig.php";
+    $min_price = "SELECT `unit_price` FROM `products` WHERE `unit_price` IN (SELECT MIN(`unit_price`) FROM `products`)";
+    $max_price = "SELECT `unit_price` FROM `products` WHERE `unit_price` IN (SELECT MAX(`unit_price`) FROM `products`)";
 
 if(isset($_GET['query'])) {
     $query = mysqli_real_escape_string($conn, $_GET['query']);
@@ -23,11 +26,17 @@ if(isset($_GET['query'])) {
     // you can set minimum length of the query if you want
     if(strlen($query) >= $min_length)   { // if query length is more or equal minimum length then
         $query_string = "SELECT * FROM `products`
-        WHERE (`product_name` LIKE '%".$query."%')";
+        WHERE (`product_name` LIKE '%".$query."%')
+        AND (`unit_price` >= ".$min_price." AND `unit_price` <= ".$max_price.")";
+
         $result = mysqli_query($conn, $query_string);
 
         if ($result) {
-            include "filterResults.php";
+            echo "<div class='price-filter'>";
+            echo "<label for='price-range'>Price Range:</label>";
+            echo "<input type='text' id='price-range' readonly>";
+            echo "</div>";
+
             $num_rows = mysqli_num_rows($result);
             if ($num_rows > 0) {
                 $count = 0;
@@ -71,6 +80,25 @@ if(isset($_GET['query'])) {
 }
 mysqli_close($conn);
 ?>
+        <script>
+        $(function() {
+            var minPrice = <?php echo $min_price; ?>;
+            var maxPrice = <?php echo $max_price; ?>;
+            $("#price-range").slider({
+                range: true,
+                min: minPrice,
+                max: maxPrice,
+                values: [minPrice, maxPrice],
+                slide: function(event, ui) {
+                    $("#price-range").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                },
+                change: function(event, ui) {
+                    window.location.href = "search.php?query=<?php echo $query; ?>&min_price=" + ui.values[0] + "&max_price=" + ui.values[1];
+                }
+            });
+            $("#price-range").val("$" + $("#price-range").slider("values", 0) + " - $" + $("#price-range").slider("values", 1));
+        });
+        </script>
 
 </div>
 </body>
