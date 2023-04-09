@@ -20,8 +20,8 @@ Created: 09/04/2023
 if(isset($_GET['query'])) {
     $query = mysqli_real_escape_string($conn, $_GET['query']);
     $min_length = 3;
-    // you can set minimum length of the query if you want
-    if(strlen($query) >= $min_length)   { // if query length is more or equal minimum length then
+
+    if(strlen($query) >= $min_length)   {
         $query_string = "SELECT * FROM `products`
         WHERE (`product_name` LIKE '%".$query."%')";
         $result = mysqli_query($conn, $query_string);
@@ -33,7 +33,7 @@ if(isset($_GET['query'])) {
                 $count = 0;
                 echo "<h1 style='text-align:center'>Search results for '$query'</h1>";
                 echo "<div class='product-container'>\n";
-                while ($a_row = mysqli_fetch_row($result)) { //Get the rows from the table
+                while ($a_row = mysqli_fetch_row($result)) {
                     if ($count % 4 == 0) {
                         echo "<div class='product-row'>\n";
                     }
@@ -58,14 +58,14 @@ if(isset($_GET['query'])) {
                     echo "</div>\n";
                 }
                 echo "</div>\n";
-            } else { // if there is no matching rows do following
+            } else {
                 echo "<h1 style='text-align:center'>Sorry! It seems we couldn't find anything with '$query' :(</h1>";
             }
             mysqli_free_result($result);
         } else {
             echo "Query failed: " . mysqli_error($conn);
         }
-    } else { // if query length is less than minimum
+    } else {
         echo "<h1 style='text-align:center'>Oops! The minimum length must be at least ".$min_length. " characters.</h1>";
     }
 }
