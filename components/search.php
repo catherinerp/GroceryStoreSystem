@@ -59,14 +59,14 @@ if(isset($_GET['query'])) {
                 }
                 echo "</div>\n";
             } else { // if there is no matching rows do following
-                echo "<h3>Sorry! It seems we couldn't find anything with '$query' :(</h3>";
+                echo "<h1 style='text-align:center'>Sorry! It seems we couldn't find anything with '$query' :(</h1>";
             }
             mysqli_free_result($result);
         } else {
             echo "Query failed: " . mysqli_error($conn);
         }
     } else { // if query length is less than minimum
-        echo "Minimum length is ".$min_length;
+        echo "<h1 style='text-align:center'>Oops! The minimum length must be at least ".$min_length. " characters.</h1>";
     }
 }
 mysqli_close($conn);
