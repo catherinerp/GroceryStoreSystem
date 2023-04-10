@@ -145,6 +145,12 @@ body {
   border: none;
 }
 
+.search-bar select {
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+}
+
 .search-bar button {
   float: right;
   padding: 6px 10px;

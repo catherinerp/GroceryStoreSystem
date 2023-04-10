@@ -12,32 +12,45 @@ This contains the search function when there is input in the search bar.
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
     </head>
 <body>
 
 <div class="main-content">
 <?php    
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
     include "dbConfig.php";
-    $min_price = "SELECT `unit_price` FROM `products` WHERE `unit_price` IN (SELECT MIN(`unit_price`) FROM `products`)";
-    $max_price = "SELECT `unit_price` FROM `products` WHERE `unit_price` IN (SELECT MAX(`unit_price`) FROM `products`)";
 
 if(isset($_GET['query'])) {
     $query = mysqli_real_escape_string($conn, $_GET['query']);
+    $sort_order = $_GET['sort_order'];
     $min_length = 3;
 
     if(strlen($query) >= $min_length)   {
+        $min_price_query = "SELECT MIN(`unit_price`) FROM `products`";
+        $max_price_query = "SELECT MAX(`unit_price`) FROM `products`";
+
+        $min_price_result = mysqli_query($conn, $min_price_query);
+        $max_price_result = mysqli_query($conn, $max_price_query);
+
+        $min_price_row = mysqli_fetch_row($min_price_result);
+        $max_price_row = mysqli_fetch_row($max_price_result);
+
+        $min_price = $min_price_row[0];
+        $max_price = $max_price_row[0];
+
         $query_string = "SELECT * FROM `products`
         WHERE (`product_name` LIKE '%".$query."%')
-        AND (`unit_price` >= ".$min_price." AND `unit_price` <= ".$max_price.")";
+        AND (`unit_price` >= ".$min_price." AND `unit_price` <= ".$max_price.")
+        ORDER BY `unit_price` ".$sort_order;
 
         $result = mysqli_query($conn, $query_string);
 
         if ($result) {
-            echo "<div class='price-filter'>";
-            echo "<label for='price-range'>Price Range:</label>";
-            echo "<input type='text' id='price-range' readonly>";
-            echo "</div>";
-
             $num_rows = mysqli_num_rows($result);
             if ($num_rows > 0) {
                 $count = 0;
@@ -81,26 +94,6 @@ if(isset($_GET['query'])) {
 }
 mysqli_close($conn);
 ?>
-        <script>
-        $(function() {
-            var minPrice = <?php echo $min_price; ?>;
-            var maxPrice = <?php echo $max_price; ?>;
-            $("#price-range").slider({
-                range: true,
-                min: minPrice,
-                max: maxPrice,
-                values: [minPrice, maxPrice],
-                slide: function(event, ui) {
-                    $("#price-range").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                },
-                change: function(event, ui) {
-                    window.location.href = "search.php?query=<?php echo $query; ?>&min_price=" + ui.values[0] + "&max_price=" + ui.values[1];
-                }
-            });
-            $("#price-range").val("$" + $("#price-range").slider("values", 0) + " - $" + $("#price-range").slider("values", 1));
-        });
-        </script>
-
 </div>
 </body>
 </html>

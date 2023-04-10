@@ -44,6 +44,10 @@ Created: 06/03/2023
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
+                <select id="sort-order" name="sort_order">
+                    <option value="asc">Sort by Price (Low to High)</option>
+                    <option value="desc">Sort by Price (High to Low)</option>
+                </select>
             </form>
             </div>
         </div>
