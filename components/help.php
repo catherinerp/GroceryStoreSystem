@@ -13,24 +13,24 @@ This page contains help information.
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<h1 style="text-align:center">Help</h1>
+		<h1>Help</h1>
+
 		<div class="help-container">
-        <h2>Frequently Asked Questions</h2>
-		<button class="accordion">Section 1</button>
-		<div class="panel">
-		<p>answer</p>
+			<h2>Frequently Asked Questions</h2>
+			<button class="accordion">Section 1</button>
+			<div class="panel">
+				<p>answer</p>
+			</div>
+				<button class="accordion">Section 1</button>
+			<div class="panel">
+				<p>answer</p>
+			</div>
+			<button class="accordion">Section 1</button>
+			<div class="panel">
+				<p>answer</p>
+			</div>
 		</div>
 
-		<button class="accordion">Section 1</button>
-		<div class="panel">
-		<p>answer</p>
-		</div>
-
-		<button class="accordion">Section 1</button>
-		<div class="panel">
-		<p>answer</p>
-		</div>
-</div>		
         <script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;
@@ -46,7 +46,6 @@ This page contains help information.
 			}
 		});
 		}
-</script>
-</script>
-</body>
+		</script>
+	</body>
 </html>	
