@@ -12,13 +12,12 @@ Created: 06/03/2023
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-<h1 style="text-align:center">Browse Products</h1>
-<div class="main-content">
+    <h1 style="text-align:center">Browse Products</h1>
+    <div class="main-content">
 <?php
     include "../dbConfig.php";
 
     $query_string = "SELECT * FROM products";
-
     $result = mysqli_query($conn, $query_string);
     $num_rows = mysqli_num_rows($result);
 

@@ -40,15 +40,15 @@ Created: 06/03/2023
             <a href="components/help.php" target="view">Help</a>
             <div class="search-bar">
             <form target="view" action="components/search.php" method="GET">
+                <select class="pricesort-dropdown"id="sort-order" name="sort_order">
+                    <option value="asc">Sort by Price (Low to High)</option>
+                    <option value="desc">Sort by Price (High to Low)</option>
+                </select>
                 <input type="text" placeholder="Search" name="query">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
-                <select id="sort-order" name="sort_order">
-                    <option value="asc">Sort by Price (Low to High)</option>
-                    <option value="desc">Sort by Price (High to Low)</option>
-                </select>
-            </form>
+                </form>
             </div>
         </div>
         <div id="mySidenav" class="sidenav">
