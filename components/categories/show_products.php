@@ -12,49 +12,45 @@ Created: 06/03/2023
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-    <h1 style="text-align:center">Browse Products</h1>
-    <div class="main-content">
-<?php
-    include "../dbConfig.php";
+        <h1 style="text-align:center">Browse Products</h1>
+        <div class="main-content">
+            <?php
+                include "../dbConfig.php";
+                $query_string = "SELECT * FROM products";
+                $result = mysqli_query($conn, $query_string);
+                $num_rows = mysqli_num_rows($result);
 
-    $query_string = "SELECT * FROM products";
-    $result = mysqli_query($conn, $query_string);
-    $num_rows = mysqli_num_rows($result);
-
-    if ($num_rows > 0) {
-        $count = 0;
-        echo "<div class='product-container'>\n";
-        while ($a_row = mysqli_fetch_row($result)) {
-            if ($count % 4 == 0) {
-                echo "<div class='product-row'>\n";
-            }
-            echo "<div class='product-card'>\n";
-            foreach ($a_row as $key => $field) {
-                if ($key == 1) {
-                    echo "<h3>$field</h3>\n";
-                } elseif ($key == 2) {
-                    echo "<p class='card-price'>$" . $field . " for ";
-                } elseif ($key == 3) {
-                    echo $field . "</p>\n";
+                if ($num_rows > 0) {
+                    $count = 0;
+                    echo "<div class='product-container'>\n";
+                    while ($a_row = mysqli_fetch_row($result)) {
+                        if ($count % 4 == 0) {
+                            echo "<div class='product-row'>\n";
+                        }
+                        echo "<div class='product-card'>\n";
+                        foreach ($a_row as $key => $field) {
+                            if ($key == 1) {
+                                echo "<h3>$field</h3>\n";
+                            } elseif ($key == 2) {
+                                echo "<p class='card-price'>$" . $field . " for ";
+                            } elseif ($key == 3) {
+                                echo $field . "</p>\n";
+                            }
+                        }
+                        echo "\t<button>Add to Cart</button>\n";
+                        echo "</div>\n";
+                        $count++;
+                        if ($count % 4 == 0) {
+                            echo "</div>\n";
+                        }
+                    }
+                    if ($count % 4 != 0) {
+                        echo "</div>\n";
+                    }
+                    echo "</div>\n";
                 }
-            }
-            echo "\t<button>Add to Cart</button>\n";
-            echo "</div>\n";
-            $count++;
-            if ($count % 4 == 0) {
-                echo "</div>\n";
-            }
-        }
-        if ($count % 4 != 0) {
-            echo "</div>\n";
-        }
-        echo "</div>\n";
-    }
-
-    mysqli_close($conn);
-?>
-
-
-</div>
-</body>
+                mysqli_close($conn);
+            ?>
+        </div>
+    </body>
 </html>	

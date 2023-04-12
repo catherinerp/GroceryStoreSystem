@@ -13,45 +13,42 @@ This page contains sql request for fruits and vegetables category.
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<h1 style="text-align:center">Browse Fruits & Vegetables</h1>
+        <h1 style='text-align:center'>Browse Fruits & Vegetables</h1>
         <?php
             include "../dbConfig.php";
-            
             $query_string = "SELECT * FROM `products` WHERE product_id REGEXP '^1';";
-            // finds products where product_id begins with 1
             $result = mysqli_query($conn, $query_string);
             $num_rows = mysqli_num_rows($result);
 
             if ($num_rows > 0) {
-            $count = 0;
-            echo "<div class='product-container'>\n";
-            while ($a_row = mysqli_fetch_row($result)) {
-                if ($count % 4 == 0) {
-                    echo "<div class='product-row'>\n";
-                }
-                echo "<div class='product-card'>\n";
-                foreach ($a_row as $key => $field) {
-                    if ($key == 1) {
-                        echo "<h3>$field</h3>\n";
-                    } elseif ($key == 2) {
-                        echo "<p class='card-price'>$" . $field . " for ";
-                    } elseif ($key == 3) {
-                        echo $field . "</p>\n";
+                $count = 0;
+                echo "<div class='product-container'>\n";
+                while ($a_row = mysqli_fetch_row($result)) {
+                    if ($count % 4 == 0) {
+                        echo "<div class='product-row'>\n";
+                    }
+                    echo "<div class='product-card'>\n";
+                    foreach ($a_row as $key => $field) {
+                        if ($key == 1) {
+                            echo "<h3>$field</h3>\n";
+                        } elseif ($key == 2) {
+                            echo "<p class='card-price'>$" . $field . " for ";
+                        } elseif ($key == 3) {
+                            echo $field . "</p>\n";
+                        }
+                    }
+                    echo "\t<button>Add to Cart</button>\n";
+                    echo "</div>\n";
+                    $count++;
+                    if ($count % 4 == 0) {
+                        echo "</div>\n";
                     }
                 }
-                echo "\t<button>Add to Cart</button>\n";
-                echo "</div>\n";
-                $count++;
-                if ($count % 4 == 0) {
+                if ($count % 4 != 0) {
                     echo "</div>\n";
                 }
-            }
-            if ($count % 4 != 0) {
                 echo "</div>\n";
             }
-            echo "</div>\n";
-        }
-
             mysqli_close($conn);
         ?>
 </body>
