@@ -30,6 +30,9 @@ Created: 06/03/2023
                         echo "<div class='product-card'>\n";
                         foreach ($a_row as $key => $field) {
                             if ($key == 1) {
+                                if ($key == 5) {
+                                    echo "<div><img src='images/$field' style='max-width:250px'></div>\n";
+                                }
                                 echo "<h3>$field</h3>\n";
                             } elseif ($key == 2) {
                                 echo "<p class='card-price'>$" . $field . " for ";
