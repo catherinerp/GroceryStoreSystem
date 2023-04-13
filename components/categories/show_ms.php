@@ -29,14 +29,16 @@ This page contains sql request for meat and seafood category.
                     }
                     echo "<div class='product-card'>\n";
                     foreach ($a_row as $key => $field) {
-                        if ($key == 1) {
+                        if ($key == 5) {
+                            echo "<div class='product-image'><img src='images/$field' style='max-width:250px'></div>\n";
+                        } elseif ($key == 1) {
                             echo "<h3>$field</h3>\n";
                         } elseif ($key == 2) {
                             echo "<p class='card-price'>$" . $field . " for ";
                         } elseif ($key == 3) {
                             echo $field . "</p>\n";
                         }
-                    }
+                    }  
                     echo "\t<button>Add to Cart</button>\n";
                     echo "</div>\n";
                     $count++;
