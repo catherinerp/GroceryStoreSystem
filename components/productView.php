@@ -6,6 +6,7 @@ This page is created to view a product and its details.
 <?php 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
+
 $product_id = $_GET['product_id'];
 
 include "dbConfig.php";

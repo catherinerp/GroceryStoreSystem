@@ -4,7 +4,7 @@ Created: 03/04/2023
 This page contains sql request for pets category.
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
     <link rel="stylesheet" href="../../assets/css/categories.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
