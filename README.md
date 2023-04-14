@@ -16,4 +16,7 @@ The categories in the website are:
 * List capabilities
 
 ## Tools
---
+* View product in greater detail
+* Frequently Asked Questions section
+* Search bar
+* Side navigation category bar
