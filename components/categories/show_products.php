@@ -46,9 +46,9 @@ Created: 06/03/2023
                                 echo "<div class='product-image'><img src='images/$field' style='max-width:250px'></div></a></div>\n";
                             }
                         }
-                        echo "<form action='GroceryStoreSystem/components/addToCart.php' method='post'>";
+                        echo "<form action='../addToCart.php' method='post'>";
                         echo "<input type='hidden' name='product_id' value='" . $a_row[0] . "'>";
-                        echo "\t<button type='submit' name='addToCart'>Add to Cart</button>\n";
+                        echo "\t<button type='submit' id='btn' name='addToCart'>Add to Cart</button>\n";
                         echo "</form>";
                         echo "</div>\n";
                         $count++;
@@ -63,6 +63,10 @@ Created: 06/03/2023
                 }
                 mysqli_close($conn);
             ?>
+            <script>
+            document.getElementById('cart-view').contentWindow.location.reload(); 
+            btn.onclick = reload;
+        </script>
         </div>
     </body>
 </html>	

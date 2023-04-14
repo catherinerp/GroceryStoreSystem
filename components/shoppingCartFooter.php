@@ -20,26 +20,29 @@ if (!isset($_SESSION['cart'])) {
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
     </head>
 	<body>
-    <h1>Shopping Cart</h1>
+    <h2>Shopping Cart</h2>
     <?php
     if (empty($_SESSION['cart'])) {
         echo "<p>Cart is empty.</p>";
     } else {
-        echo "<table>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                </tr>";
+        echo "<table>";
         foreach ($_SESSION['cart'] as $item_id => $quantity) {
             include "dbConfig.php";
             $query_string = "SELECT * FROM products";
             $result = mysqli_query($conn, $query_string);
             $row = mysqli_fetch_assoc($result);
-            $item_name = $row['item_name'];
+            $product_name = $row['product_name'];
+            $product_image= $row['product_name'];
+            $unit_price = $row['unit_price'];
+            $item_price = $unit_price * $quantity;
 
+            /**<div class='product-image'>
+            <img src='categories/images/$product_image>' style='max-width:250px'>
+            </div>**/
             echo "<tr>
                     <td>$product_name</td>
                     <td>$quantity</td>
+                    <td>$$item_price</td>
                 </tr>";
         }
         echo "</table>";
