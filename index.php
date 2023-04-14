@@ -13,9 +13,30 @@ This page contains the views for different sections of the main webpage.
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            overflow: hidden;
+            height: 100%
+        }
+        body {
+
+        }
+    </style>
 </head>
 <body>
-    <?php include_once 'components/header.php' ?>
-    <iframe name="view" src="components/categories/show_products.php" frameborder=0 width="100%" height="100%"></iframe>
+    <?php include 'components/header.php' ?>
+    <iframe name="view" src="components/categories/show_products.php" style="
+        width: 100%;
+        height: 60%;
+        display: block;
+        position: absolute;"
+        frameborder=0></iframe>
+    <iframe name="cart-view" src="components/shoppingCartFooter.php" style="
+        bottom: 0;
+        width: 100%;
+        height: 20%;
+        display: block;
+        position: absolute;"
+        frameborder=0></iframe>
 </body>
 </html>

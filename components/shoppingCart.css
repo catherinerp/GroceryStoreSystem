@@ -1,0 +1,9 @@
+body {
+    position: absolute;
+    background-color: white;
+    font-family: 'Quicksand';
+    overflow: hidden;
+}
+h1 {
+    margin-right: 10px;
+}
