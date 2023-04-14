@@ -6,7 +6,7 @@ This contains the search function when there is input in the search bar.
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="categories/landing.css">
+		<link rel="stylesheet" href="../assets/css/categories.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@ if(isset($_GET['query'])) {
                     echo "<div class='product-card'>\n";
                     foreach ($a_row as $key => $field) {
                         if ($key == 5) {
-                            echo "<div class='product-image'><img src='images/$field' style='max-width:250px'></div>\n";
+                            echo "<div class='product-image'><img src='categories/images/$field' style='max-width:250px'></div>\n";
                         } elseif ($key == 1) {
                             echo "<h3>$field</h3>\n";
                         } elseif ($key == 2) {
