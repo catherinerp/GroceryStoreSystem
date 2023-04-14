@@ -35,11 +35,20 @@ Created: 06/03/2023
                                 echo "<h3>$field</h3>\n";
                             } elseif ($key == 2) {
                                 echo "<p class='card-price'>$" . $field . " for ";
+                            } elseif ($key == 4) {
+                                if ($field > 0) {
+                                    echo "<span class='product-stock'><p>In stock</p></span>";
+                                } else {
+                                    echo "<span class='product-stock'><p>Out of stock</p></span>";
+                                }
                             } elseif ($key == 3) {
                                 echo $field . "</p>\n";
                             }
-                        }            
-                        echo "\t<button>Add to Cart</button>\n";
+                        }
+                        echo "<form action='GroceryStoreSystem/components/addToCart.php' method='post'>";
+                        echo "<input type='hidden' name='product_id' value='" . $a_row[0] . "'>";
+                        echo "\t<button type='submit' name='addToCart'>Add to Cart</button>\n";
+                        echo "</form>";
                         echo "</div>\n";
                         $count++;
                         if ($count % 4 == 0) {
