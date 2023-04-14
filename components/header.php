@@ -15,12 +15,6 @@ Created: 06/03/2023
         <div class="banner">
             <img href="index.php" class="img-logo" src="assets/images/logo-smallsize.png" alt="Grocery To-Go Logo">
             <h3>Your first choice for easy, accessible shopping.</h3>
-            <div class="shopping-cart">
-            <button>
-                Cart
-                <i class="fa fa-shopping-cart"></i>
-            </button>
-            </div>
         </div>
 		<div class="topnav">
             <a style="cursor:pointer" onclick="openNav()"><i class="fa fa-bars"></i> Browse</a>

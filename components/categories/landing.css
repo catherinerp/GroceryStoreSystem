@@ -1,10 +1,9 @@
 body {
   font-family: 'Quicksand', sans-serif;
-  height: 100%;
   margin-bottom: 0px;
-  min-height: 100vh;
   max-width: 100%;
   background-color: white;
+  overflow: inherit;
 }
 
 /** Product Card View CSS **/
@@ -42,6 +41,10 @@ body {
 .card-price {
   color: grey;
   font: 20px;
+}
+
+.product-stock {
+  font-style: italic;
 }
 
 .product-card button {
