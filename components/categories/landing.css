@@ -31,6 +31,12 @@ body {
   box-sizing: border-box;
 }
 
+.clickable-product a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
 .product-image {
   max-width: 200px;
   max-height: 200px;

@@ -29,20 +29,21 @@ Created: 06/03/2023
                         }
                         echo "<div class='product-card'>\n";
                         foreach ($a_row as $key => $field) {
-                            if ($key == 5) {
-                                echo "<div class='product-image'><img src='images/$field' style='max-width:250px'></div>\n";
-                            } elseif ($key == 1) {
-                                echo "<h3>$field</h3>\n";
+                            if ($key == 1) {
+                                echo "<div class='clickable-product'><a href='../productView.php?product_id=" . $a_row[0] ."' target='view'><h3>$field</h3>\n";
                             } elseif ($key == 2) {
                                 echo "<p class='card-price'>$" . $field . " for ";
+                            } elseif ($key == 3) {
+                                echo $field . "</p>\n";
                             } elseif ($key == 4) {
                                 if ($field > 0) {
                                     echo "<span class='product-stock'><p>In stock</p></span>";
                                 } else {
                                     echo "<span class='product-stock'><p>Out of stock</p></span>";
                                 }
-                            } elseif ($key == 3) {
-                                echo $field . "</p>\n";
+                            }
+                            if ($key == 5) {
+                                echo "<div class='product-image'><img src='images/$field' style='max-width:250px'></div></a></div>\n";
                             }
                         }
                         echo "<form action='GroceryStoreSystem/components/addToCart.php' method='post'>";

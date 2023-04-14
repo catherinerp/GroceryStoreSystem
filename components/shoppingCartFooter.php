@@ -31,7 +31,7 @@ if (!isset($_SESSION['cart'])) {
                     <th>Quantity</th>
                 </tr>";
         foreach ($_SESSION['cart'] as $item_id => $quantity) {
-            include "../dbConfig.php";
+            include "dbConfig.php";
             $query_string = "SELECT * FROM products";
             $result = mysqli_query($conn, $query_string);
             $row = mysqli_fetch_assoc($result);
