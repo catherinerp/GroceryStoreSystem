@@ -20,33 +20,42 @@ if (!isset($_SESSION['cart'])) {
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
     </head>
 	<body>
-    <h2>Shopping Cart</h2>
-    <?php
-    if (empty($_SESSION['cart'])) {
-        echo "<p>Cart is empty.</p>";
-    } else {
-        echo "<table>";
-        foreach ($_SESSION['cart'] as $item_id => $quantity) {
-            include "dbConfig.php";
-            $query_string = "SELECT * FROM products";
-            $result = mysqli_query($conn, $query_string);
-            $row = mysqli_fetch_assoc($result);
-            $product_name = $row['product_name'];
-            $product_image= $row['product_name'];
-            $unit_price = $row['unit_price'];
-            $item_price = $unit_price * $quantity;
+    <div class="shopping-cart-container">
+        <div class="cart-items-container">
+        <?php
+        if (empty($_SESSION['cart'])) {
+            echo "<p>Cart is empty.</p>";
+        } else {
+            $total_price = 0;
+            echo "<div class='product-container'>";
+                foreach ($_SESSION['cart'] as $item_id => $quantity) {
+                    include "dbConfig.php";
+                    $query_string = "SELECT * FROM products";
+                    $result = mysqli_query($conn, $query_string);
+                    $row = mysqli_fetch_assoc($result);
+                    $product_name = $row['product_name'];
+                    $product_image = $row['product_image'];
+                    $unit_price = $row['unit_price'];
+                    $item_price = $unit_price * $quantity;
 
-            /**<div class='product-image'>
-            <img src='categories/images/$product_image>' style='max-width:250px'>
-            </div>**/
-            echo "<tr>
-                    <td>$product_name</td>
-                    <td>$quantity</td>
-                    <td>$$item_price</td>
-                </tr>";
+                    echo "<div class='product-item'>
+                            <img src='categories/images/$product_image' style='width:75px; height:75px'>
+                            <div class='product-info'>
+                                <p class='product-name'>$product_name ($quantity)</p>
+                                <p class='item-price'>Total: $$item_price</p>
+                            </div>
+                        </div>";
+                    $total_price = $total_price + $item_price;
+                }
+                echo "</div>";
         }
-        echo "</table>";
-    }
-    ?>
+        ?>
+        </div>
+        <div class="cart-action-buttons">
+            <h3 style="text-align:center"><?php echo "Cart Total: $total_price"; ?></h3>
+            <br/>
+            <a href="viewShoppingCart.php" target="_blank"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
+        </div>
+    </div>
     </body>
 </html>

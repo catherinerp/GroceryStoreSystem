@@ -1,9 +1,83 @@
 body {
     position: absolute;
-    background-color: white;
+    background-color: #eeeeee;
     font-family: 'Quicksand';
     overflow: hidden;
 }
 h1 {
     margin-right: 10px;
+}
+
+.shopping-cart-container {
+    display: grid;
+    grid-template-columns: 60fr 5fr;
+    grid-gap: 20px;
+}
+
+.cart-items-container {
+    float: left;
+    overflow: hidden;
+    overflow-y:scroll;
+    width: 80%;
+}
+
+.cart-action-buttons {
+    background-color: #eeeeee;
+    width: 220px;
+    display: block;
+    right: 10px;
+    text-align: center;
+}
+
+.view-cart-btn {
+    margin: 0 auto;
+    background-color: #333;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.checkout-btn {
+    background-color: #2196F3;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    opacity: 0.6;
+    margin: 4px 2px;
+}
+
+.checkout-btn:hover {opacity: 1;}
+.view-cart-btn:hover {opacity: 1;}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product-item {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+.product-info {
+    margin-top: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-quantity, .item-price {
+    margin-top: 2px;
 }
