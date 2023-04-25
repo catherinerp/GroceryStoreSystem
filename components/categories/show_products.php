@@ -15,6 +15,8 @@ Created: 06/03/2023
         <h1 style="text-align:center">Browse Products</h1>
         <div class="main-content">
             <?php
+            ini_set('display_errors', 1);
+            ini_set('error_reporting', E_ALL);
                 include "../dbConfig.php";
                 $query_string = "SELECT * FROM products";
                 $result = mysqli_query($conn, $query_string);
