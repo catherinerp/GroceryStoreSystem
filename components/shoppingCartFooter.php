@@ -30,13 +30,16 @@ if (!isset($_SESSION['cart'])) {
             echo "<div class='product-container'>";
                 foreach ($_SESSION['cart'] as $item_id => $quantity) {
                     include "dbConfig.php";
-                    $query_string = "SELECT * FROM products";
+                    $query_string = "SELECT * FROM products WHERE product_id = $item_id";
                     $result = mysqli_query($conn, $query_string);
                     $row = mysqli_fetch_assoc($result);
+
                     $product_name = $row['product_name'];
                     $product_image = $row['product_image'];
                     $unit_price = $row['unit_price'];
+                    
                     $item_price = $unit_price * $quantity;
+                    $item_price = number_format((float)$item_price, 2, '.', '');
 
                     echo "<div class='product-item'>
                             <img src='categories/images/$product_image' style='width:75px; height:75px'>
@@ -46,15 +49,15 @@ if (!isset($_SESSION['cart'])) {
                             </div>
                         </div>";
                     $total_price = $total_price + $item_price;
+                    $total_price = number_format((float)$total_price, 2, '.', '');
                 }
                 echo "</div>";
         }
         ?>
         </div>
         <div class="cart-action-buttons">
-            <h3 style="text-align:center"><?php echo "Cart Total: $total_price"; ?></h3>
-            <br/>
-            <a href="viewShoppingCart.php" target="_blank"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
+            <h3 style="text-align:center"><?php echo "Cart Total:</br>$$total_price"; ?></h3>
+            <a href="checkoutPage.php" target="_blank"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
         </div>
     </div>
     </body>
