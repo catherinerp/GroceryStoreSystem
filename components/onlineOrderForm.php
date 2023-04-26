@@ -71,6 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $from = '"Catherine" <cpebenito88@gmail.com>';
         $to = 'cpebenito88@gmail.com';
 
+        $subject    = "A simple hello";
+        $PLAINTEXT  = "Hello from my PHP script";
+        $RANDOMHASH = "anyrandomhash";
+        $FICTIONALSERVER = "@email.myownserver.com";
+        $ORGANIZATION = "myownserver.com";
         // Subject
 
         $subject = 'Office supplies - Reminder';
@@ -98,19 +103,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </body>
         </html>
         ';
-        // To send HTML emails, remember to set the Content-type header
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers = "From: ".$from."\n";
+        $headers .= "Reply-To: ".$from."\n";
+        $headers .= "Return-path: ".$from."\n";
+        $headers .= "Message-ID: <".$RANDOMHASH.$FICTIONALSERVER.">\n";
+        $headers .= "X-Mailer: Your Website\n";
+        $headers .= "Organization: $ORGANIZATION\n";
+        $headers .= "MIME-Version: 1.0\n";
+
+        // Add content type (plain text encoded in quoted printable, in this example)
+        $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+
+        // Convert plain text body to quoted printable
         $message = quoted_printable_encode($PLAINTEXT);
+
+        // Create a BASE64 encoded subject
         $subject = "=?UTF-8?B?".base64_encode($SUBJECT)."?=";
-        // Other additional headers
-        $headers = array();
-        $headers[] = 'To: cpebenito88@gmail.com';
-        $headers[] = 'From: Catherine Pe Benito <cpebenito88@gmail.com>';
-
-        $headers[] = 'Cc: Catherine Pe Benito <Catherine.Pebenito@student.uts.edu.au>';
-
-        // Mail it
 
         mail($to, $subject, $message, implode("\r\n", $headers),"-f".$from);
 
