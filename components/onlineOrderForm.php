@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = htmlentities($_POST['address']);
         $state = htmlentities($_POST['state']);
             $country = htmlentities($_POST['country']);
-            $subject = htmlentities("your order is confirmed! | Grocery TO-GO");
+            $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
             $message = '
             <html>
             <head>

@@ -12,6 +12,16 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
+function finish() {
+    foreach ($_SESSION['cart'] as $item_id => $quantity) {
+        $_SESSION['cart'][$item_id] = 0;
+    }
+}
+
+if (isset($_GET['finish'])) {
+    finish();
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,13 +85,22 @@ if (!isset($_SESSION['cart'])) {
             <p>Total <span class="price" style="color:black"><b>$<?php echo $total_price?></b></span></p>
             </div>
         </div>
-        <h1>Your order is confirmed!</h1></br>
-        <h2>Order Details</h3>
-        <p>Full Name: <?php echo $fullname?></p>
-        <p>Email: <?php echo $email?></p>
-        <p>Address: <?php echo $address?></p>
-        <p>State: <?php echo $state?></p>
-        <p>Country: <?php echo $country?></p>
+        <h1>Your order has been confirmed!</h1>
+        <h3>Thank you for ordering from Grocery TO-GO! <i class="fa fa-shopping-cart"></i></h3></br>
+        <p class="confirmation-order-message">
+            A confirmation email with your order details has been sent to
+            <b><?php echo $email?></b>.</br>
+            You should expect your order to be delivered within 2-3 business days.
+        </p></br>
+        <h2>Order Details</h3></br>
+        <p class="confirmation-order-message">
+            <b>Full Name:</b> <?php echo $fullname?></br>
+            <b>Email:</b> <?php echo $email?></br>
+            <b>Address:</b> <?php echo $address?></br>
+            <b>State:</b> <?php echo $state?></br>
+            <b>Country:</b> <?php echo $country?></br>
+        </p>
+        <input type='button' name='finish' onClick="parent.location='../index.php'" value='click here'>
     </div>
     </body>
 </html>

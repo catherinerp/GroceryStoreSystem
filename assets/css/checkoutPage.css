@@ -123,3 +123,7 @@ table td {
 .required {
     color: red;
 }
+
+.confirmation-order-message {
+    font-size: 18px;
+}
