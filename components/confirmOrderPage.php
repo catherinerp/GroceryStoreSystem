@@ -11,6 +11,7 @@ session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +82,6 @@ if (!isset($_SESSION['cart'])) {
         <p>Address: <?php echo $address?></p>
         <p>State: <?php echo $state?></p>
         <p>Country: <?php echo $country?></p>
-        
     </div>
     </body>
 </html>
