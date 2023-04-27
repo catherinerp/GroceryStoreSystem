@@ -4,6 +4,13 @@ Created: 26/04/2023
 This contains the page to add shipping details.
 -->
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require './PHPMailer/src/Exception.php';
+require './PHPMailer/src/PHPMailer.php';
+require './PHPMailer/src/SMTP.php';
+
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
 session_start();
@@ -67,61 +74,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       }
     if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
-        // Multiple recipients separated by comma
-        $from = '"Catherine" <cpebenito88@gmail.com>';
-        $to = 'cpebenito88@gmail.com';
+        $fullname = htmlentities($_POST['fullname']);
+        $email = htmlentities($_POST['email']);
+        $address = htmlentities($_POST['address']);
+        $state = htmlentities($_POST['state']);
+            $country = htmlentities($_POST['country']);
+            $subject = htmlentities("your order is confirmed! | Grocery TO-GO");
+            $message = '
+            <html>
+            <head>
+            <title>Office supplies for March</title>
+            </head>
+            <body>
+            <p>We need the following office supplies</p>
+            <table>
+            <tr>
+            <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
+            </tr>
+            <tr>
+            <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
+            </tr>
+            <tr>
+            <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
+            </tr>
+            </table>
+            </body>
+            </html>
+            ';
 
-        $subject    = "A simple hello";
-        $PLAINTEXT  = "Hello from my PHP script";
-        $RANDOMHASH = "anyrandomhash";
-        $FICTIONALSERVER = "@email.myownserver.com";
-        $ORGANIZATION = "myownserver.com";
-        // Subject
-
-        $subject = 'Office supplies - Reminder';
-
-        // Message
-
-        $message = '
-        <html>
-        <head>
-        <title>Office supplies for March</title>
-        </head>
-        <body>
-        <p>We need the following office supplies</p>
-        <table>
-        <tr>
-        <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
-        </tr>
-        <tr>
-        <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
-        </tr>
-        <tr>
-        <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
-        </tr>
-        </table>
-        </body>
-        </html>
-        ';
-        $headers = "From: ".$from."\n";
-        $headers .= "Reply-To: ".$from."\n";
-        $headers .= "Return-path: ".$from."\n";
-        $headers .= "Message-ID: <".$RANDOMHASH.$FICTIONALSERVER.">\n";
-        $headers .= "X-Mailer: Your Website\n";
-        $headers .= "Organization: $ORGANIZATION\n";
-        $headers .= "MIME-Version: 1.0\n";
-
-        // Add content type (plain text encoded in quoted printable, in this example)
-        $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
-
-        // Convert plain text body to quoted printable
-        $message = quoted_printable_encode($PLAINTEXT);
-
-        // Create a BASE64 encoded subject
-        $subject = "=?UTF-8?B?".base64_encode($SUBJECT)."?=";
-
-        mail($to, $subject, $message, implode("\r\n", $headers),"-f".$from);
-
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username='cpebenito88@gmail.com';
+            $mail->Password='wlxqkmfxvrbnqteo';
+            $mail->Port= 465;
+            $mail->SMTPSecure = 'ssl';
+            $mail->isHTML(true);
+            $mail->setFrom($email, $fullname);
+            $mail->addAddress($email);
+            $mail->Subject = ("$fullname, $subject");
+            $mail->Body = $message;
+            $mail->send();
 
         header("Location: confirmOrderPage.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
         exit();
@@ -194,12 +188,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Billing Details</h3>
         <sub><span class="required">*</span> Required field</sub>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <label for="name">Full Name <span class="required">*</span></label></br>
-            <input type="text" id="name" name="fullname" placeholder="E.g. Jane Doe">
+            <label for="fullname">Full Name <span class="required">*</span></label></br>
+            <input type="text" id="fullname" name="fullname" placeholder="E.g. Jane Doe">
             <span class="required"><?php echo $fullnameErr;?></span>
             </br>
             <label for="email">Email <span class="required">*</span></label></br>
-            <input type="text" id="email" name="email" placeholder="E.g. jane@email.com">
+            <input type="email" id="email" name="email" placeholder="E.g. jane@email.com">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
             <label for="address">Address <span class="required">*</span></label></br>
