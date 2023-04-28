@@ -94,10 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             .'<p>You should expect your order to be delivered within 2-3 business days.</p>'
             .'<p><b>Time:</b> '. $current_time .'</p>'
             .'<p><b>Date:</b> '. $today_date .'</></p><hr>'
-            .'<h2>Order Details</h2>
-            single item cost
-            total cost'
-            .'<p><b>Total: </b>'. $total_price .'</p><hr>'
             .'<h2>Billing Details </h2>'
             .'<p><b>Full Name: </b>'. $fullname .'</p>'
             .'<p><b>Email: </b>'. $email .'</p>'
