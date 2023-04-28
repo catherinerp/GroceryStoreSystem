@@ -24,7 +24,9 @@ if (!isset($_SESSION['cart'])) {
         <div class="cart-items-container">
         <?php
         if (empty($_SESSION['cart'])) {
-            echo "<p>Cart is empty.</p>";
+            echo "<h3>Cart is empty.</h3>";
+            $total_price = 0;
+            $total_quantity = 0;
         } else {
             $total_price = 0;
             echo "<div class='product-container'>";
@@ -37,7 +39,7 @@ if (!isset($_SESSION['cart'])) {
                     $product_name = $row['product_name'];
                     $product_image = $row['product_image'];
                     $unit_price = $row['unit_price'];
-                    
+
                     $item_price = $unit_price * $quantity;
                     $item_price = number_format((float)$item_price, 2, '.', '');
 
@@ -55,7 +57,7 @@ if (!isset($_SESSION['cart'])) {
         }
         ?>
         </div>
-        <div class="cart-action-buttons">
+        <div class="cart-action-buttons" <?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
             <h3 style="text-align:center"><?php echo "Cart Total:</br>$$total_price"; ?></h3>
             <a href="checkoutPage.php" target="_blank"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
         </div>

@@ -12,11 +12,8 @@ if (!isset($_SESSION['cart'])) {
 
 function emptyCart() {
     foreach ($_SESSION['cart'] as $item_id => $quantity) {
-        if ($quantity == 0) {
-            unset($_SESSION['cart'][$item_id]);
-        } else {
-            $_SESSION['cart'][$item_id] = 0;
-        }
+        $_SESSION['cart'][$item_id] = 0;
+        unset($_SESSION['cart'][$item_id]);
     }
 }
 
@@ -25,6 +22,13 @@ if (isset($_GET['emptyCart'])) {
     header("Location: ".$_SERVER['PHP_SELF']);
     exit();
 }
+
+
+if (isset($_GET['finish'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,11 +79,13 @@ if (isset($_GET['emptyCart'])) {
             echo "<p>Cart is empty.</p>";
             $total_price = 0;
             $total_quantity = 0;
+            echo "<form method='get'>";
+            echo "<button class='go-home-btn' type='submit' name='finish'>Go Home</button>";
+            echo "</form>";
         } else {
             include "dbConfig.php";
             $total_price = 0;
             $total_quantity = 0;
-               
             echo "<table>";
             echo "<tr class='cart-columns'>";
                 echo "<td>Item</td>";
@@ -127,14 +133,16 @@ if (isset($_GET['emptyCart'])) {
         
             }
         ?>
-        <form method="get">
-            <button class="empty-cart-btn" type="submit" name="emptyCart">Empty Cart</button>
-        </form>
-        
-        <div class="cart-actions">
-            <h3>Item Quantity</h3><?php echo "$total_quantity"?>
-            <h2>Cart Total</br><?php echo "$$total_price"?></h2>
-            <a class="checkout-btn" type="button" href="onlineOrderForm.php" <?php if (empty($_SESSION['cart'])) echo 'disabled'; ?>>Checkout</a>
+        <div class="hide-element'"<?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
+            <form method="get">
+                <button class="empty-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
+            </form>
+            <div class="cart-actions">
+                <h2>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><?php echo $total_quantity?></b></span></h2>
+                <h2><?php echo "$$total_price"?></h2>
+                </br>
+                <a class="checkout-btn" type="button" href="onlineOrderForm.php" style="float:right">Checkout</a>
+            </div>
         </div>
     </div>
     </body>

@@ -78,49 +78,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = htmlentities($_POST['email']);
         $address = htmlentities($_POST['address']);
         $state = htmlentities($_POST['state']);
-            $country = htmlentities($_POST['country']);
-            $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
-            $message = '
-            <html>
-            <head>
-            <title>Office supplies for March</title>
-            </head>
-            <body>
-            <p>We need the following office supplies</p>
-            <table>
-            <tr>
-            <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
-            </tr>
-            <tr>
-            <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
-            </tr>
-            <tr>
-            <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
-            </tr>
-            </table>
-            </body>
-            </html>
-            ';
+        $country = htmlentities($_POST['country']);
+        $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
+        $message = '
+        <html>
+        <head>
+        <title>Office supplies for March</title>
+        </head>
+        <body>
+        <p>We need the following office supplies</p>
+        <table>
+        <tr>
+        <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
+        </tr>
+        <tr>
+        <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
+        </tr>
+        <tr>
+        <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
+        </tr>
+        </table>
+        </body>
+        </html>
+        ';
 
-            $mail = new PHPMailer(true);
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username='cpebenito88@gmail.com';
-            $mail->Password='wlxqkmfxvrbnqteo';
-            $mail->Port= 465;
-            $mail->SMTPSecure = 'ssl';
-            $mail->isHTML(true);
-            $mail->setFrom($email, $fullname);
-            $mail->addAddress($email);
-            $mail->Subject = ("$fullname, $subject");
-            $mail->Body = $message;
-            $mail->send();
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username='cpebenito88@gmail.com';
+        $mail->Password='wlxqkmfxvrbnqteo';
+        $mail->Port= 465;
+        $mail->SMTPSecure = 'ssl';
+        $mail->isHTML(true);
+        $mail->setFrom($email, $fullname);
+        $mail->addAddress($email);
+        $mail->Subject = ("$fullname, $subject");
+        $mail->Body = $message;
+        $mail->send();
 
         header("Location: confirmOrderPage.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
         exit();
     }  
 }
+
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -150,6 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ini_set('error_reporting', E_ALL);?>
         <div class="shopping-cart-container">
         <div class="cart-items-container">
+        <h2>Order Details</h2></br>
         <?php
         if (empty($_SESSION['cart'])) {
             echo "<p>Cart is empty.</p>";
@@ -157,35 +159,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include "dbConfig.php";
             $total_price = 0;
             $total_quantity = 0;
-        foreach ($_SESSION['cart'] as $item_id => $quantity) {
-            // Retrieve the item details from the database
-            // You would need to modify this code based on your database structure
-            $query = "SELECT * FROM products WHERE product_id = $item_id";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-    
-            // Calculate the total price and total quantity
-            $unit_price = $row['unit_price'];
-            $item_price = $unit_price * $quantity;
-            $item_price = number_format((float)$item_price, 2, '.', '');
+            echo "<table>";
+            echo "<tr class='cart-columns'>";
+                echo "<td>Item</td>";
+                echo "<td>Quantity</td>";
+                echo "<td>Price</td>";
+            echo "</tr>";
+                foreach ($_SESSION['cart'] as $item_id => $quantity) {
+                    $query_string = "SELECT * FROM products WHERE product_id = $item_id";
+                    $result = mysqli_query($conn, $query_string);
+                    $row = mysqli_fetch_assoc($result);
+                    $product_name = $row['product_name'];
+                    $product_image= $row['product_image'];
+                    $unit_price = $row['unit_price'];
+                    $unit_quantity = $row['unit_quantity'];
 
-            $total_price += $item_price * $quantity;
-            $total_quantity += $quantity;
-        }
-    }
+                    $item_price = $unit_price * $quantity;
+                    $item_price = number_format((float)$item_price, 2, '.', '');
+
+                    echo "<tr>
+                            <td>
+                                <div class='cart-item-image'>
+                                    <img src='categories/images/$product_image' style='width:75px; height:75px'>\t
+                                </div>
+                                <div class='cart-item-name'>
+                                $product_name
+                                </br>($unit_quantity)
+                                </div>
+                            </td>
+                            <td>
+                                \t$quantity\t
+                            </td>
+                            <td>$$item_price</td>
+                            </tr>\t";
+                    $total_price = $total_price + $item_price;
+                    $total_price = number_format((float)$total_price, 2, '.', '');
+                    $total_quantity = $total_quantity + $quantity;
+                }
+                echo "</table>";
+         }
         ?>
-        <div class="col-25">
-            <div class="container">
-            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><?php echo $total_quantity?></b></span></h4>
-            <p><a href="#">Product 1</a> <span class="price">$<?php echo $item_price ?></span></p>
-            <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-            <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-            <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-            <hr>
-            <p>Total <span class="price" style="color:black"><b>$<?php echo $total_price?></b></span></p>
-            </div>
-        </div>
-        <h2>Billing Details</h3>
+        <h2>Billing Details</h2>
         <sub><span class="required">*</span> Required field</sub>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="fullname">Full Name <span class="required">*</span></label></br>
@@ -209,9 +223,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="required"><?php echo $stateErr;?></span>    
             </br>
             <div class="cart-actions">
-                <h3>Item Quantity</h3><?php echo "$total_quantity"?>
-                <h2>Cart Total</br><?php echo "$$total_price"?></h2>
-            <input class="checkout-btn" type="submit" name="submit" value="Place Order">
+                <h2>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><?php echo $total_quantity?></b></span></h2>
+                <h2><?php echo "$$total_price"?></h2></br>
+                <span style='float:right'><input class="checkout-btn" type="button" name="submit" value="Place Order"></input></span>
             </div>
         </form>
     </div>

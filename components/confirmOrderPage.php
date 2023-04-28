@@ -15,11 +15,13 @@ if (!isset($_SESSION['cart'])) {
 function finish() {
     foreach ($_SESSION['cart'] as $item_id => $quantity) {
         $_SESSION['cart'][$item_id] = 0;
+        unset($_SESSION['cart'][$item_id]);
     }
 }
 
 if (isset($_GET['finish'])) {
     finish();
+    header("Location: ../index.php");
     exit();
 }
 ?>
@@ -74,17 +76,6 @@ if (isset($_GET['finish'])) {
         $state = $_GET['state'];
         $country = $_GET['country'];
         ?>
-        <div class="col-25">
-            <div class="container">
-            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><?php echo $total_quantity?></b></span></h4>
-            <p><a href="#">Product 1</a> <span class="price">$<?php echo $item_price ?></span></p>
-            <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-            <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-            <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-            <hr>
-            <p>Total <span class="price" style="color:black"><b>$<?php echo $total_price?></b></span></p>
-            </div>
-        </div>
         <h1>Your order has been confirmed!</h1>
         <h3>Thank you for ordering from Grocery TO-GO! <i class="fa fa-shopping-cart"></i></h3></br>
         <p class="confirmation-order-message">
@@ -92,7 +83,48 @@ if (isset($_GET['finish'])) {
             <b><?php echo $email?></b>.</br>
             You should expect your order to be delivered within 2-3 business days.
         </p></br>
-        <h2>Order Details</h3></br>
+        <h2>Order Details</h2></br>
+        <?php
+        echo "<table>";
+            echo "<tr class='cart-columns'>";
+                echo "<td>Item</td>";
+                echo "<td>Quantity</td>";
+                echo "<td>Price</td>";
+            echo "</tr>";
+                foreach ($_SESSION['cart'] as $item_id => $quantity) {
+                    $query_string = "SELECT * FROM products WHERE product_id = $item_id";
+                    $result = mysqli_query($conn, $query_string);
+                    $row = mysqli_fetch_assoc($result);
+                    $product_name = $row['product_name'];
+                    $product_image= $row['product_image'];
+                    $unit_price = $row['unit_price'];
+                    $unit_quantity = $row['unit_quantity'];
+
+                    $item_price = $unit_price * $quantity;
+                    $item_price = number_format((float)$item_price, 2, '.', '');
+
+                    echo "<tr>
+                            <td>
+                                <div class='cart-item-image'>
+                                    <img src='categories/images/$product_image' style='width:75px; height:75px'>\t
+                                </div>
+                                <div class='cart-item-name'>
+                                $product_name
+                                </br>($unit_quantity)
+                                </div>
+                            </td>
+                            <td>
+                                \t$quantity\t
+                            </td>
+                            <td>$$item_price</td>
+                            </tr>\t";
+                    $total_price = $total_price + $item_price;
+                    $total_price = number_format((float)$total_price, 2, '.', '');
+                    $total_quantity = $total_quantity + $quantity;
+                }
+                echo "</table>";
+                ?>
+        <h2>Billing Details</h2></br>
         <p class="confirmation-order-message">
             <b>Full Name:</b> <?php echo $fullname?></br>
             <b>Email:</b> <?php echo $email?></br>
@@ -100,7 +132,9 @@ if (isset($_GET['finish'])) {
             <b>State:</b> <?php echo $state?></br>
             <b>Country:</b> <?php echo $country?></br>
         </p>
-        <input type='button' name='finish' onClick="parent.location='../index.php'" value='click here'>
+        <form method="get">
+            <button class='go-home-btn' type='submit' name='finish'>Go Home</button>
+        </form>
     </div>
     </body>
 </html>
