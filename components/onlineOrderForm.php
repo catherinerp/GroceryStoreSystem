@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="required"><?php echo $fullnameErr;?></span>
             </br>
             <label for="email">Email <span class="required">*</span></label></br>
-            <input type="email" id="email" name="email" placeholder="E.g. jane@email.com">
+            <input type="text" id="email" name="email" placeholder="E.g. jane@email.com">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
             <label for="address">Address <span class="required">*</span></label></br>
