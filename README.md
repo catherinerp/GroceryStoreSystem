@@ -6,8 +6,8 @@ This is a submission for Programming on the Internet Assignment 1 by Catherine P
 
 ## Categories
 * Fruits & Vegetables
- * Fruits
- * Vegetables
+   * Fruits
+   * Vegetables
 * Meat & Seafood
 * Snacks & Confectionery
 * Freezer
