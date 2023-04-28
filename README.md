@@ -6,14 +6,27 @@ This is a submission for Programming on the Internet Assignment 1 by Catherine P
 
 ## Categories
 * Fruits & Vegetables
-   * Fruits
-   * Vegetables
+    * Fruit
+    * Vegetable
 * Meat & Seafood
+    * Meat
+    * Seafood
 * Snacks & Confectionery
+    * Dairy
+    * Tea & Coffee
 * Freezer
+    * Frozen Food
+    * Dessert
 * Beauty & Personal Care
+    * Beauty
+    * Hygiene
+    * Medicine
 * Pets
+    * Pet Food
+    * Pet Accessories
 * Household
+    * Cleaning
+    * Laundry
 
 ## Features
 * View product in greater detail
