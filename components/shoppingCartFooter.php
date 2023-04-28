@@ -59,7 +59,7 @@ if (!isset($_SESSION['cart'])) {
         </div>
         <div class="cart-action-buttons" <?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
             <h3 style="text-align:center"><?php echo "Cart Total:</br>$$total_price"; ?></h3>
-            <a href="checkoutPage.php" target="_blank"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
+            <a href="checkoutPage.php" target="_parent"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
         </div>
     </div>
     </body>
