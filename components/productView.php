@@ -15,14 +15,11 @@ $query_string = "SELECT * FROM products WHERE product_id = $product_id";
 $result = mysqli_query($conn, $query_string);
 $row = mysqli_fetch_assoc($result);
 
-// Retrieve product details
 $product_name = $row['product_name'];
 $unit_price = $row['unit_price'];
 $product_image = $row['product_image'];
 $unit_quantity = $row['unit_quantity'];
 $in_stock = $row['in_stock'];
-// $product_description = $row['product_description'];
-// Add more fields as needed
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +35,6 @@ $in_stock = $row['in_stock'];
             <div class='column'>
                 <img src='categories/images/<?php echo $product_image;?>' style='max-width:250px'>
             </div>
-            <!--<p><strong>Product Description:</strong> <?php echo $product_description; ?></p>-->
-            <!-- Add more HTML and PHP code to display additional product details as needed -->
 
             <div class="column" style='text-align: right'>
                 <h1> <?php echo $product_name; ?></h1>

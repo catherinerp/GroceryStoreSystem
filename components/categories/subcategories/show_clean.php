@@ -1,7 +1,7 @@
 <!-- 
 Author: Catherine Pe Benito
 Created: 02/04/2023
-This page contains sql request for fruits category.
+This page contains sql request for cleaning category.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ This page contains sql request for fruits category.
         <div class="main-content">
         <?php
             include "../../dbConfig.php";
-            $query_string = "SELECT * FROM `products` WHERE product_id REGEXP '7' AND product_name LIKE '%G';";
+            $query_string = "SELECT * FROM `products` WHERE product_id REGEXP '7' AND product_name LIKE 'G%';";
             $result = mysqli_query($conn, $query_string);
                 $num_rows = mysqli_num_rows($result);
 

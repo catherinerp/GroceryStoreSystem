@@ -31,7 +31,6 @@ Created: 06/03/2023
                     <a href="components/categories/show_hh.php" target="view">Household</a>
                 </div>
             </div>
-            <a href="components/help.php" target="view">Help</a>
             <div class="search-bar">
             <form target="view" action="components/search.php" method="GET">
                 <select class="pricesort-dropdown"id="sort-order" name="sort_order">
