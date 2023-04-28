@@ -146,8 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h3>Your first choice for easy, accessible shopping.</h3>
     </div>
     <?php
-            ini_set('display_errors', 1);
-            ini_set('error_reporting', E_ALL);?>
+        ini_set('display_errors', 1);
+        ini_set('error_reporting', E_ALL);?>
         <div class="shopping-cart-container">
         <div class="cart-items-container">
         <?php

@@ -35,14 +35,14 @@ if (isset($_GET['finish'])) {
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
     </head>
 	<body>
-        
     <div class="banner">
         <img href="../index.php" target="_blank" class="img-logo" src="../assets/images/logo-smallsize.png" alt="Grocery To-Go Logo">
         <h3>Your first choice for easy, accessible shopping.</h3>
     </div>
     <?php
-            ini_set('display_errors', 1);
-            ini_set('error_reporting', E_ALL);?>
+        ini_set('display_errors', 1);
+        ini_set('error_reporting', E_ALL);?>
+
         <div class="shopping-cart-container">
         <div class="cart-items-container">
         <?php
@@ -52,27 +52,27 @@ if (isset($_GET['finish'])) {
             include "dbConfig.php";
             $total_price = 0;
             $total_quantity = 0;
-        foreach ($_SESSION['cart'] as $item_id => $quantity) {
-            // Retrieve the item details from the database
-            // You would need to modify this code based on your database structure
-            $query = "SELECT * FROM products WHERE product_id = $item_id";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-    
-            // Calculate the total price and total quantity
-            $unit_price = $row['unit_price'];
-            $item_price = $unit_price * $quantity;
-            $item_price = number_format((float)$item_price, 2, '.', '');
+            foreach ($_SESSION['cart'] as $item_id => $quantity) {
+                // Retrieve the item details from the database
+                // You would need to modify this code based on your database structure
+                $query = "SELECT * FROM products WHERE product_id = $item_id";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result);
+        
+                // Calculate the total price and total quantity
+                $unit_price = $row['unit_price'];
+                $item_price = $unit_price * $quantity;
+                $item_price = number_format((float)$item_price, 2, '.', '');
 
-            $total_price += $item_price * $quantity;
-            $total_quantity += $quantity;
+                $total_price += $item_price * $quantity;
+                $total_quantity += $quantity;
+            }
         }
-    }
-    $fullname = $_GET['fullname'];
-    $email = $_GET['email'];
-    $address = $_GET['address'];
-    $state = $_GET['state'];
-    $country = $_GET['country'];
+        $fullname = $_GET['fullname'];
+        $email = $_GET['email'];
+        $address = $_GET['address'];
+        $state = $_GET['state'];
+        $country = $_GET['country'];
         ?>
         <div class="col-25">
             <div class="container">

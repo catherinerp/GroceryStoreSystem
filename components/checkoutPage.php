@@ -12,7 +12,11 @@ if (!isset($_SESSION['cart'])) {
 
 function emptyCart() {
     foreach ($_SESSION['cart'] as $item_id => $quantity) {
-        $_SESSION['cart'][$item_id] = 0;
+        if ($quantity == 0) {
+            unset($_SESSION['cart'][$item_id]);
+        } else {
+            $_SESSION['cart'][$item_id] = 0;
+        }
     }
 }
 
@@ -69,6 +73,8 @@ if (isset($_GET['emptyCart'])) {
         <?php
         if (empty($_SESSION['cart'])) {
             echo "<p>Cart is empty.</p>";
+            $total_price = 0;
+            $total_quantity = 0;
         } else {
             include "dbConfig.php";
             $total_price = 0;
