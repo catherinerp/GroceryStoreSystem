@@ -1,7 +1,7 @@
 # Online Grocery Store Assignment
 
 ## Window Layout
-Add a rough diagram of what and where frames are.
+!["Window Layout"](assets/images/window_layout.png)
 
 ## Features
 The categories in the website are:
