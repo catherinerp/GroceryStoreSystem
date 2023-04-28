@@ -63,11 +63,11 @@ Created: 06/03/2023
                 }
                 mysqli_close($conn);
             ?>
-            <script>
-                function reloadPage() {
-                    window.parent.location.reload();
-                }
-            </script>
         </div>
     </body>
+    <script>
+        function reloadPage() {
+            window.parent.location.reload();
+        }
+    </script>
 </html>	

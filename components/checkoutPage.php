@@ -69,18 +69,15 @@ if (isset($_GET['finish'])) {
         <img href="../index.php" target="_blank" class="img-logo" src="../assets/images/logo-smallsize.png" alt="Grocery To-Go Logo">
         <h3>Your first choice for easy, accessible shopping.</h3>
     </div>
-    <?php
-            ini_set('display_errors', 1);
-            ini_set('error_reporting', E_ALL);?>
-    <div class="shopping-cart-container">
+        <div class="shopping-cart-container">
         <div class="cart-items-container">
         <?php
         if (empty($_SESSION['cart'])) {
-            echo "<p>Cart is empty.</p>";
+            echo "<h3>Cart is empty.</h3>";
             $total_price = 0;
             $total_quantity = 0;
             echo "<form method='get'>";
-            echo "<button class='go-home-btn' type='submit' name='finish'>Go Home</button>";
+            echo "<button style='float:right' class='go-home-btn' type='submit' name='finish'>Go Home</button>";
             echo "</form>";
         } else {
             include "dbConfig.php";
