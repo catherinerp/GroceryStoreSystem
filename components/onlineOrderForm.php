@@ -80,27 +80,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $state = htmlentities($_POST['state']);
         $country = htmlentities($_POST['country']);
         $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
+
+        $today_date = date("d/m/Y");
+        $current_time = date("h:i:a");
+        $total_price = htmlentities($total_price);
+        
         $message = '
         <html>
           <head>
-            <title>Office supplies for March</title>
+            <title>Order Confirmation | Grocery TO-GO</title>
           </head>
           <body>
-            <p>We need the following office supplies</p>
-            <table>
-            <tr>
-            <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
-            </tr>
-            <tr>
-            <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
-            </tr>
-            <tr>
-            <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
-            </tr>
-            </table>
+            <h1>Your order has been confirmed!</h1>
+            <h3>Thank you for ordering from Grocery TO-GO.</h3>'
+            .'<p>You should expect your order to be delivered within 2-3 business days.</p>'
+            .'<p><b>Time:</b> '. $current_time .'</p>'
+            .'<p><b>Date:</b> '. $today_date .'</></p><hr>'
+            .'<h2>Order Details</h2>
+            single item cost
+            total cost'
+            .'<p><b>Total: </b>'. $total_price .'</p><hr>'
+            .'<h2>Billing Details </h2>'
+            .'<p><b>Full Name: </b>'. $fullname .'</p>'
+            .'<p><b>Email: </b>'. $email .'</p>'
+            .'<p><b>Address: </b>'. $address .'</p>'
+            .'<p><b>State: </b>'. $state .'</p>'
+            .'<p><b>Country: </b>'. $country .'</p>
           </body>
-        </html>
         ';
+        $message .="
+        </body>
+        </html>";
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
@@ -199,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "</table>";
          }
         ?>
-        <h2>Billing Details</h2>
+        <h2>Shipping Details</h2>
         <sub><span class="required">*</span> Required field</sub>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="fullname">Full Name <span class="required">*</span></label></br>

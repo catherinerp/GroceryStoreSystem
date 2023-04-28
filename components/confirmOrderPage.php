@@ -124,7 +124,7 @@ if (isset($_GET['finish'])) {
                 }
                 echo "</table>";
                 ?>
-        <h2>Billing Details</h2></br>
+        <h2>Shipping Details</h2></br>
         <p class="confirmation-order-message">
             <b>Full Name:</b> <?php echo $fullname?></br>
             <b>Email:</b> <?php echo $email?></br>
