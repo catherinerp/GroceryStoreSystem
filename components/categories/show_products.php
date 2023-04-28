@@ -50,7 +50,7 @@ Created: 06/03/2023
                         }
                         echo "<form action='../addToCart.php' method='post'>";
                         echo "<input type='hidden' name='product_id' value='" . $a_row[0] . "'>";
-                        echo "\t<button type='submit' id='btn' name='addToCart'>Add to Cart</button>\n";
+                        echo "\t<button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='reloadPage()'>Add to Cart</button>\n";
                         echo "</form>";
                         echo "</div>\n";
                         $count++;
@@ -66,9 +66,10 @@ Created: 06/03/2023
                 mysqli_close($conn);
             ?>
             <script>
-            document.getElementById('cart-view').contentWindow.location.reload(); 
-            btn.onclick = reload;
-        </script>
+                function reloadPage() {
+                    window.parent.location.reload();
+                }
+            </script>
         </div>
     </body>
 </html>	
