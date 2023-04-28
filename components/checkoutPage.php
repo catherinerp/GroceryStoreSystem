@@ -6,9 +6,6 @@ This contains the page to view the shopping cart.
 <?php
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('error_reporting', E_ALL);
-
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
@@ -144,8 +141,6 @@ if (isset($_GET['finish'])) {
             }
         }
             function increaseQuantity(item_id) {
-                ini_set('display_errors', 1);
-        ini_set('error_reporting', E_ALL);  
                 var max_quantity = 10;
                 var currentQuantity = parseInt(document.getElementById('quantity-' + item_id).innerText);
                 if (currentQuantity < max_quantity) {

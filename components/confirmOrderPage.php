@@ -4,8 +4,6 @@ Created: 26/04/2023
 This contains the page to confirm order.
 -->
 <?php
-ini_set('display_errors', 1);
-ini_set('error_reporting', E_ALL);
 session_start();
 
 if (!isset($_SESSION['cart'])) {
@@ -41,10 +39,6 @@ if (isset($_GET['finish'])) {
         <img href="../index.php" target="_blank" class="img-logo" src="../assets/images/logo-smallsize.png" alt="Grocery To-Go Logo">
         <h3>Your first choice for easy, accessible shopping.</h3>
     </div>
-    <?php
-        ini_set('display_errors', 1);
-        ini_set('error_reporting', E_ALL);?>
-
         <div class="shopping-cart-container">
         <div class="cart-items-container">
         <?php

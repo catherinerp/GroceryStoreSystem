@@ -10,9 +10,6 @@ use PHPMailer\PHPMailer\Exception;
 require './PHPMailer/src/Exception.php';
 require './PHPMailer/src/PHPMailer.php';
 require './PHPMailer/src/SMTP.php';
-
-ini_set('display_errors', 1);
-ini_set('error_reporting', E_ALL);
 session_start();
 
 if (!isset($_SESSION['cart'])) {
@@ -157,9 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img href="../index.php" target="_blank" class="img-logo" src="../assets/images/logo-smallsize.png" alt="Grocery To-Go Logo">
         <h3>Your first choice for easy, accessible shopping.</h3>
     </div>
-    <?php
-        ini_set('display_errors', 1);
-        ini_set('error_reporting', E_ALL);?>
         <div class="shopping-cart-container">
         <div class="cart-items-container">
         <h2>Order Details</h2></br>
