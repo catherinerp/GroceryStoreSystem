@@ -20,3 +20,5 @@ The categories in the website are:
 * Frequently Asked Questions section
 * Search bar
 * Side navigation category bar
+* Add product to cart
+* Email functionality with order & shipping details
