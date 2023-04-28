@@ -3,8 +3,7 @@
 ## Window Layout
 !["Window Layout"](assets/images/window_layout.png)
 
-## Features
-The categories in the website are:
+## Categories
 * Fruits & Vegetables
 * Meat & Seafood
 * Snacks & Confectionery
@@ -13,9 +12,7 @@ The categories in the website are:
 * Pets
 * Household
 
-* List capabilities
-
-## Tools
+## Features
 * View product in greater detail
 * Frequently Asked Questions section
 * Search bar

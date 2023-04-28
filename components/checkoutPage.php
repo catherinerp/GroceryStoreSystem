@@ -6,8 +6,15 @@ This contains the page to view the shopping cart.
 <?php
 session_start();
 
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
+}
+
+function removeCartItem($item_id) {
+    unset($_SESSION['cart'][$item_id]);
 }
 
 function emptyCart() {
@@ -40,28 +47,6 @@ if (isset($_GET['finish'])) {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
-        <script>
-            function increaseQuantity(item_id) {
-            // Update the quantity in the session cart
-            <?php echo 'var max_quantity = 10;' ?>
-            var currentQuantity = parseInt(document.getElementById('quantity-' + item_id).innerText);
-            if (currentQuantity < max_quantity) {
-                currentQuantity++;
-                document.getElementById('quantity-' + item_id).innerText = currentQuantity;
-                window.location.href = 'updateCart.php?item_id=' + item_id + '&quantity=' + currentQuantity;
-            }
-            }
-
-            function decreaseQuantity(item_id) {
-            // Update the quantity in the session cart
-            var currentQuantity = parseInt(document.getElementById('quantity-' + item_id).innerText);
-            if (currentQuantity > 1) {
-                currentQuantity--;
-                document.getElementById('quantity-' + item_id).innerText = currentQuantity;
-                window.location.href = 'updateCart.php?item_id=' + item_id + '&quantity=' + currentQuantity;
-            }
-            }
-        </script>
     </head>
 	<body>
         
@@ -100,28 +85,30 @@ if (isset($_GET['finish'])) {
 
                     $item_price = $unit_price * $quantity;
                     $item_price = number_format((float)$item_price, 2, '.', '');
-
-                    echo "<tr>
+                    
+                    ?>
+                    <tr>
                             <td>
+                                
                                 <div class='cart-item-image'>
-                                    <img src='categories/images/$product_image' style='width:75px; height:75px'>\t
+                                    <span onclick="removeCartItem(<?php echo $item_id; ?>)"><i class="fa fa-remove" style="font-size:24px; color: grey;"></i></span>   
+                                    <img src='categories/images/<?php echo $product_image; ?>' style='width:75px; height:75px'>
                                 </div>
                                 <div class='cart-item-name'>
-                                $product_name
-                                </br>($unit_quantity)
+                                <?php echo $product_name; ?>
+                                </br>(<?php echo $unit_quantity; ?>)
                                 </div>
                             </td>
                             <td>
                                 <form method='post' action='updateCart.php'>
-                                    <input type='hidden' name='item_id' value='<?php echo $item_id; ?>'>
-                                    <input type='hidden' name='quantity' value='<?php echo $quantity; ?>'>
-                                    <button onclick='decreaseQuantity($item_id)'>-</button>
-                                    \t$quantity\t
-                                    <button onclick='increaseQuantity($item_id)'>+</button>
+                                <input type='hidden' name='item_id' value='<?php echo $item_id; ?>' />
+                                <input type='hidden' name='quantity' value='<?php echo $quantity; ?>' />
+                                    <button onclick='decreaseQuantity($item_id)'>-</button> <?php echo $quantity; ?> <button onclick='increaseQuantity($item_id)'>+</button>
                                 </form>
                             </td>
-                            <td>$$item_price</td>
-                            </tr>\t";
+                            <td>$<?php echo $item_price; ?></td>
+                            </tr>
+                    <?php
                     $total_price = $total_price + $item_price;
                     $total_price = number_format((float)$total_price, 2, '.', '');
                     $total_quantity = $total_quantity + $quantity;
@@ -130,7 +117,7 @@ if (isset($_GET['finish'])) {
         
             }
         ?>
-        <div class="hide-element'"<?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
+        <div class="hide-element" <?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
             <form method="get">
                 <button class="empty-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
@@ -142,5 +129,58 @@ if (isset($_GET['finish'])) {
             </div>
         </div>
     </div>
+    <script>
+        function removeCartItem(item_id) {
+            if (confirm("Are you sure you want to remove this item from the cart?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        location.reload();
+                    }
+                };  
+                xhr.open("POST", "removeCartItem.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("item_id=" + item_id);
+            }
+        }
+            function increaseQuantity(item_id) {
+                ini_set('display_errors', 1);
+        ini_set('error_reporting', E_ALL);  
+                var max_quantity = 10;
+                var currentQuantity = parseInt(document.getElementById('quantity-' + item_id).innerText);
+                if (currentQuantity < max_quantity) {
+                    currentQuantity++;
+                    updateCart(item_id, currentQuantity);
+                }
+            }
+
+            function decreaseQuantity(item_id) {
+                var currentQuantity = parseInt(document.getElementById('quantity-' + item_id).innerText);
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    updateCart(item_id, currentQuantity);
+                } else {
+                    // Remove item from cart
+                    removeCartItem(item_id);
+                }
+            }
+
+            function updateCart(item_id, quantity) {
+                document.getElementById('quantity-' + item_id).innerText = quantity;
+                if (quantity == 0) {
+                    // Remove item from cart
+                    removeCartItem(item_id);
+                } else {
+                    // Update the quantity in the session cart
+                    window.location.href = 'updateCart.php?item_id=' + item_id + '&quantity=' + quantity;
+                }
+            }
+
+            function removeCartItem(item_id) {
+                document.getElementById('cart-item-' + item_id).remove();
+                // Update the quantity in the session cart
+                window.location.href = 'updateCart.php?item_id=' + item_id + '&quantity=0';
+            }
+        </script>
     </body>
 </html>

@@ -6,6 +6,7 @@ body {
     overflow: auto;
     background-color: #eeeeee;
     box-sizing: border-box;
+    z-index: 1;
   }
 
   .main-content {

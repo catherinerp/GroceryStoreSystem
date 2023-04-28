@@ -48,13 +48,28 @@ Created: 06/03/2023
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <p>Browse by Category</p>
-            <a href="components/categories/show_fv.php" target="view" onclick="closeNav()">Fruit & Vegetables</a>
-            <a href="components/categories/show_ms.php" target="view" onclick="closeNav()">Meat & Seafood</a>
-            <a href="components/categories/show_sc.php" target="view" onclick="closeNav()">Snacks & Confectionery</a>
-            <a href="components/categories/show_fr.php" target="view" onclick="closeNav()">Freezer</a>
-            <a href="components/categories/show_bp.php" target="view" onclick="closeNav()">Beauty & Personal Care</a>
-            <a href="components/categories/show_pet.php" target="view" onclick="closeNav()">Pets</a>
-            <a href="components/categories/show_hh.php" target="view" onclick="closeNav()">Household</a>
+            <a style="color: white" href="components/categories/show_fv.php" target="view" onclick="closeNav()">Fruit & Vegetables</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_fruit.php" target="view" onclick="closeNav()">Fruit</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_vegetable.php"" target="view" onclick="closeNav()">Vegetables</a>
+            <a style="color: white" href="components/categories/show_ms.php" target="view" onclick="closeNav()">Meat & Seafood</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_meat.php" target="view" onclick="closeNav()">Meat</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_seafood.php" target="view" onclick="closeNav()">Seafood</a>
+            <a style="color: white" href="components/categories/show_sc.php" target="view" onclick="closeNav()">Snacks & Confectionery</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_teacoff.php" target="view" onclick="closeNav()">Tea & Coffee</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_dairy.php" target="view" onclick="closeNav()">Dairy</a>
+            <a style="color: white" href="components/categories/show_fr.php" target="view" onclick="closeNav()">Freezer</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_frozenfood.php" target="view" onclick="closeNav()">Frozen Food</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_dessert.php" target="view" onclick="closeNav()">Dessert</a>
+            <a style="color: white" href="components/categories/show_bp.php" target="view" onclick="closeNav()">Beauty & Personal Care</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_medicine.php" target="view" onclick="closeNav()">Medicine</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_hygiene.php" target="view" onclick="closeNav()">Hygiene</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_beauty.php" target="view" onclick="closeNav()">Beauty</a>
+            <a style="color: white" href="components/categories/show_pet.php" target="view" onclick="closeNav()">Pets</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_petfood.php" target="view" onclick="closeNav()">Pet Food</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_petacc.php" target="view" onclick="closeNav()">Pet Accessories</a>
+            <a style="color: white" href="components/categories/show_hh.php" target="view" onclick="closeNav()">Household</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_clean.php" target="view" onclick="closeNav()">Cleaning</a>
+                <a style="font-size: 20px" href="components/categories/subcategories/show_laundry.php" target="view" onclick="closeNav()">Laundry</a>
         </div>
         <script>
         function openNav() {

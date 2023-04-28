@@ -8,6 +8,19 @@ session_start();
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
+} 
+
+function emptyCart() {
+    foreach ($_SESSION['cart'] as $item_id => $quantity) {
+        $_SESSION['cart'][$item_id] = 0;
+        unset($_SESSION['cart'][$item_id]);
+    }
+}
+
+if (isset($_GET['emptyCart'])) {
+    emptyCart();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -60,6 +73,9 @@ if (!isset($_SESSION['cart'])) {
         <div class="cart-action-buttons" <?php echo empty($_SESSION['cart']) ? 'style="display:none; visibility: hidden"' : ''; ?>>
             <h3 style="text-align:center"><?php echo "Cart Total:</br>$$total_price"; ?></h3>
             <a href="checkoutPage.php" target="_parent"><input class="view-cart-btn" type="button" value="View Cart" <?php echo empty($_SESSION['cart']) ? 'disabled' : ''; ?>> </a><br/>
+            <form method="get">
+                <button class="empty-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
+            </form>
         </div>
     </div>
     </body>

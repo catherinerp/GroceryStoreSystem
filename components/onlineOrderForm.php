@@ -80,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $state = htmlentities($_POST['state']);
         $country = htmlentities($_POST['country']);
         $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
+        $sender = htmlentities("Grocery TO-GO");
 
         $today_date = date("d/m/Y");
         $current_time = date("h:i:a");
@@ -121,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port= 465;
         $mail->SMTPSecure = 'ssl';
         $mail->isHTML(true);
-        $mail->setFrom($email, $fullname);
+        $mail->setFrom($email, $sender);
         $mail->addAddress($email);
         $mail->Subject = ("$fullname, $subject");
         $mail->Body = $message;

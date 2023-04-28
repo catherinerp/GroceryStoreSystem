@@ -16,20 +16,23 @@ This page contains the views for different sections of the main webpage.
 </head>
 <body>
     <?php include 'components/header.php' ?>
-    <iframe name="view" src="components/categories/show_products.php" style="
+    <iframe id="view" name="view" src="components/categories/show_products.php" style="
         width: 100%;
         height: 60%;
         display: block;
-        position: absolute;"
+        position: absolute;
+        z-index: 0;"
         frameborder=0>
     </iframe>
-    <iframe name="cart-view" src="components/shoppingCartFooter.php" style="
+    <iframe id="cart-view" name="cart-view" src="components/shoppingCartFooter.php" style="
         bottom: 0;
         width: 100%;
         height: 20%;
         display: block;
-        position: absolute;"
+        position: absolute;
+        z-index: 0"
         frameborder=0>
     </iframe>
+    <script src="components/shoppingCartFooter.php"></script>
 </body>
 </html>

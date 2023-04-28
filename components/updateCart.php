@@ -16,6 +16,6 @@ if (isset($_GET['item_id']) && isset($_GET['quantity'])) {
   }
 }
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header("Location: checkoutPage.php");
 exit();
 ?>

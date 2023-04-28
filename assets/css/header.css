@@ -8,7 +8,7 @@ body {
 /** Header CSS **/
 
 .banner {
-  overflow: hidden;
+  overflow: auto;
   background-color: #2196F3;
   margin: auto;
   font-family: 'Quicksand', sans-serif;
@@ -30,33 +30,13 @@ body {
   padding-left: 30px;
 }
 
-.shopping-cart button {
-  float: right;
-  background: inherit;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  border: none;
-  cursor: pointer;
-}
-
-.shopping-cart a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #2196F3;
-  display: block;
-}
-
 /** Top Navigation Bar CSS **/
 
 .topnav {
   overflow: hidden;
   background-color: #333;
   font-weight: 500;
+  z-index: 99;
 }
 
 .topnav a {
@@ -83,6 +63,12 @@ body {
 .dropdown {
   float: left;
   overflow: hidden;
+  z-index: 999;
+  list-style: none;
+}
+
+.dropdown-submenu {
+  position: relative;
 }
 
 .dropdown .drophvr {
@@ -94,6 +80,15 @@ body {
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+
+}
+
+.dropdown-submenu .dropdown-links {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: none;
+  z-index: 999;
 }
 
 .dropdown-links {
@@ -102,7 +97,7 @@ body {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  y-index: 999;
+  z-index: 999;
 }
 
 .dropdown-links a {
