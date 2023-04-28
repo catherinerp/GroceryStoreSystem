@@ -133,7 +133,7 @@ if (isset($_GET['finish'])) {
             <b>Country:</b> <?php echo $country?></br>
         </p>
         <form method="get">
-            <button class='go-home-btn' type='submit' name='finish'>Go Home</button>
+            <button style='float:right' class='go-home-btn' type='submit' name='finish'>Go Home</button>
         </form>
     </div>
     </body>

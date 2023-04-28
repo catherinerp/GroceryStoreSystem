@@ -82,23 +82,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
         $message = '
         <html>
-        <head>
-        <title>Office supplies for March</title>
-        </head>
-        <body>
-        <p>We need the following office supplies</p>
-        <table>
-        <tr>
-        <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
-        </tr>
-        <tr>
-        <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
-        </tr>
-        <tr>
-        <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
-        </tr>
-        </table>
-        </body>
+          <head>
+            <title>Office supplies for March</title>
+          </head>
+          <body>
+            <p>We need the following office supplies</p>
+            <table>
+            <tr>
+            <th>Item</th><th>Quantity</th><th>Month</th><th>Department</th>
+            </tr>
+            <tr>
+            <td>Notebook</td><td>10</td><td>March</td><td>Operations</td>
+            </tr>
+            <tr>
+            <td>Chair</td><td>5</td><td>March</td><td>Marketing</td>
+            </tr>
+            </table>
+          </body>
         </html>
         ';
 
@@ -106,8 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username='cpebenito88@gmail.com';
-        $mail->Password='wlxqkmfxvrbnqteo';
+        $mail->Username='grocerytogogo@gmail.com';
+        $mail->Password='whivlxsyfmrolzyi';
         $mail->Port= 465;
         $mail->SMTPSecure = 'ssl';
         $mail->isHTML(true);
@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="cart-actions">
                 <h2>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><?php echo $total_quantity?></b></span></h2>
                 <h2><?php echo "$$total_price"?></h2></br>
-                <span style='float:right'><input class="checkout-btn" type="button" name="submit" value="Place Order"></input></span>
+                <input style="float:right" class="checkout-btn" type="submit" name="submit" value="Place Order"></input>
             </div>
         </form>
     </div>
