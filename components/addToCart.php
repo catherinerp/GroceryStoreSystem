@@ -17,7 +17,7 @@ if (isset($_POST['product_id'])) {
         $_SESSION['cart'][$product_id] = 1;
     }
 
-    header("Location: categories/show_products.php");
+    header("Refresh: 0");
     exit();
 }
 ?>
